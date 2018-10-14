@@ -7,8 +7,8 @@ const list = (dir) => {
       .filter(file => fs.lstatSync(file).isFile())
       .map(file => {
         const content = fs.readFileSync(file, 'utf-8')
-        const regChamel = /\/\*\*[^\0]*\*\*\//g
-        console.log(regChamel.exec(content))
+        const regChamel = /\*([^*]|[\r\n]|(\*+([^*\/]|[\r\n])))*\*+/g
+        console.log(content.match(regChamel))
       })
   })
 }
