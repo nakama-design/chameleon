@@ -66,6 +66,6 @@ const list = (dir) => {
   })
 }
 
-list('../orori-api/application/controllers').then(res => {
+list('./example').then(res => {
   console.log(res)
 })
