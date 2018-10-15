@@ -1,0 +1,73 @@
+#! /usr/bin/env node
+
+const fs = require('fs')
+const exec = require('child_process').execSync
+const path = require('path')
+const chalk = require('chalk')
+const read = require('read-yaml')
+const program = require('commander')
+const package = require('../package')
+const chameleon = __dirname
+const project = process.cwd()
+const timestamp = require('log-timestamp')
+const { copySync } = require('fs-extra')
+const start = require('../src/start')
+const ghpages = require('gh-pages')
+
+timestamp(() => {
+  return `
+    ${chalk.green(`[${new Date().toLocaleTimeString()}]`)}
+  `.replace(/ PM| AM/g, '').trim()
+})
+
+const write = console.log
+
+const info = (message) => {
+  return `${chalk.cyan('[info]')} ${message}`
+}
+const done = (message) => {
+  return `${chalk.green('[done]')} ${message}`
+}
+const error = (message) => {
+  return `${chalk.red('[fail]')} ${message}`
+}
+
+const configExist = (chameleon) => {
+  if (!fs.existsSync(chameleon)) {
+    write(error('Config file not found, please start chameleon on valid directory'))
+    write(error(`Run ${chalk.bold('chameleon --help')} to see a details`))
+
+    process.exit(0)
+  }
+  
+  return read.sync(chameleon)
+}
+
+program
+  .usage('[command] [options]')
+  .version(`Chameleon CLI v${package.version}`, '-v, --version')
+
+program
+  .command('generate')
+  .usage('cham generate ')
+  .description('Generate chameleon project')
+  .action((option) => {
+    // do stuff
+  })
+
+program
+  .command('start')
+  .usage('chameleon start <project>')
+  .description('Run current project directory')
+  .action((option) => {
+    // do stuff
+  })
+
+program.parse(process.argv)
+
+if (program.args.length === 0) {
+  console.log(`
+  Welcome to Chameleon CLI v${package.version},
+  Use ${chalk.green.bold('chameleon --help')} to show help message.
+  `)
+}
