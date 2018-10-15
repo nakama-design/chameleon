@@ -34,7 +34,7 @@ const createGroup = (name) => {
   return `
     <div class="card-row card-row_group">
       <div class="card-field">
-        <div class="card-field_name">Group : ${name}</div>
+        <div class="card-field_name">Group ${name}</div>
       </div>
     </div>
   `
