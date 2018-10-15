@@ -1,5 +1,5 @@
 {
-  "name": "cham",
+  "name": "chame",
   "version": "0.1.0-dev",
   "description": "🍃 The next generation REST APIs Documentation",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "node": ">=8"
   },
   "bin": {
-    "cham": "./bin/chameleon"
+    "chame": "./bin/chameleon"
   },
   "repository": {
     "type": "git",
