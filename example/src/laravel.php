@@ -18,7 +18,7 @@ class UserController extends Controller
      *  id : Integer
      * }
      * @response    : {
-     *  view     : 'HTML'
+     *  view     : HTML
      * }
      */
     public function show($id)

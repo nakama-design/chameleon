@@ -38,32 +38,44 @@ const tokenize = (arr) => {
   return bracket
 }
 
-const extract = (arr) => {
-  return arr.map(string => {
-    const cleanup = string.replace(/^\s+\*\s|\/\*+|^\s+\*\//gm, '')
-    return tokenize(cleanup.split('\n').filter(item => item !== ''))
-  })
+const getContent = (string, file) => {
+  const cleanup = string.replace(/^\s+\*\s|\/\*+|^\s+\*\//gm, '')
+  const data = tokenize(cleanup.split('\n').filter(item => item !== ''))
+  data['file'] = file
+  return {
+    group: data['group'] || 'unknown',
+    content: data
+  }
 }
 
-const getRoutes = async (directory) => {
-  return new Promise(resolve => {
-    glob(`${directory}/*`, async (err, files) => {    
-      const data = []
-  
-      await files.filter(file => fs.lstatSync(file).isFile()).map(file => {
-        const content = fs.readFileSync(file, 'utf-8')
-        const getComment = /\/\*(\*(?!\/)|[^*])*\*\//gm
+const getRoutes = async directory => {
+  return new Promise (resolve => {
+    glob(`${directory}/*`, (err, files) => {
+      const bracket = {}
+      const filter = files.filter(file => fs.lstatSync(file).isFile())
+
+      Promise.all(filter.map(file => {
+        const string = fs.readFileSync(file, 'utf-8')
+        const regex = /\/\*(\*(?!\/)|[^*])*\*\//gm
         
-        if (getComment.test(content)) {
-          const source = content.match(getComment).filter(item => {
-            return item.includes('@chameleon')
+        if (regex.test(string)) {
+          return string.match(regex).filter(comment => {
+            return comment.includes('@chameleon')
+          }).map(comment => {
+            const { group, content } = getContent(comment, file)
+
+            if (typeof bracket[group] === 'undefined') {
+              bracket[group] = {
+                group: group,
+                routes: []
+              }
+            }
+            bracket[group]['routes'].push(content)
           })
-  
-          data.push(extract(source))
         }
+      })).then(res => {
+        resolve(bracket)
       })
-  
-      resolve(await data.filter(item => item.length > 0))
     })
   })
 }
@@ -73,9 +85,7 @@ module.exports = async (
   chameleon,
   project,
   write,
-  info,
-  done,
-  error
+  info
 ) => {
   const template = path.resolve(chameleon, '../template')
   const destination = path.resolve(project, config['destination'] || 'docs')
@@ -96,6 +106,7 @@ module.exports = async (
   await fs.writeFileSync(configFile, JSON.stringify(config, false, 2))
 
   write(info('Collecting routes'))
+
   const routes = await getRoutes(sourceDir)
 
   write(info('Creating routes configuration'))

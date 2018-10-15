@@ -1,0 +1,111 @@
+body {
+  background-color: #F2F5FA;
+}
+.navbar {
+  background-color: #ffffff;
+  margin-bottom: 2rem;
+
+  &-brand {
+    img {
+      width: auto;
+      height: 20px;
+    }
+  }
+}
+.card {
+  &-body {
+    padding: 1rem 0;
+  }
+  &-row {
+    width: 100%;
+    font-size: 12px;
+    border-bottom: 1px solid transparentize($color: #D7DEE6, $amount: .5);
+    text-transform: uppercase;
+    color: #89939E;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+    &_heading {
+      padding-bottom: .5rem;
+
+      .card-field {
+        padding: 0 1rem;
+      }
+    }
+    &_group {
+      background-color: transparentize($color: #F6F8FA, $amount: .4);
+      font-weight: 400;
+      color: #C2CBD5;
+
+      .card-field {
+        padding: .5rem 1rem;
+      }
+    }
+    &_data {
+      font-size: 14px;
+      font-weight: 400;
+      text-transform: capitalize;
+      cursor: pointer;
+      
+      .card-field {
+        padding: 1rem;
+      }
+      .card-field_route {
+        text-transform: initial;
+      }
+      &:hover {
+        background-color: transparentize($color: #F6F8FA, $amount: .6);
+      }
+    }
+  }
+  &-field {
+    display: flex;
+    align-items: center;
+
+    &_name {
+      width: 17%;
+      margin-left: 3%;
+    }
+    &_route {
+      width: 20%;
+    }
+    &_description {
+      width: 40%;
+    }
+    &_method {
+      width: 20%;
+    }
+    &_primary {
+      color: #007BFF;
+    }
+    &_success {
+      color: #17C671;
+    }
+    &_info {
+      color: #00B8D8;
+    }
+    &_warning {
+      color: #FFB400;
+    }
+    &_danger {
+      color: #C4183C;
+    }
+  }
+  &-expanded {
+    min-height: 0;
+    max-height: 0;
+    padding: 0;
+    overflow: hidden;
+    transition: all .3s ease-in-out;
+
+    &_content {
+      padding: 2rem;
+    }
+    &_active {
+      min-height: 400px;
+      max-height: auto;
+      border-top: 1px solid transparentize($color: #D7DEE6, $amount: .5);
+    }
+  }
+}

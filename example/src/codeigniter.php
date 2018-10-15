@@ -11,11 +11,12 @@ class User extends Controller
      * @description : Some description here
      * @route       : /token
      * @method      : GET
+     * @group      : foo
      * @parameter   : {
      *  username : String
      * }
      * @response    : {
-     *  token : 'JWT Token'
+     *  token : JWT Token
      * }
      */
     public function token_get()

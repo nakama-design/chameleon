@@ -9,7 +9,7 @@ class UsersController {
    * @route       : /users
    * @method      : GET
    * @response    : {
-   *  view     : 'HTML'
+   *  view     : HTML
    * }
    */
   * index (request, response) {
