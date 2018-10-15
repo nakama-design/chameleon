@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "sass": "sass template/scss/main.scss template/css/main.min.css --style compressed --watch"
   },
   "keywords": [],
   "author": "",
