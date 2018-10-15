@@ -4,6 +4,7 @@
     "name"        : "Get Token",
     "description" : "Some description here",
     "route"       : "/token",
+    "method"      : "GET",
     "parameter"   : {
       "username" : "String,",
       "password" : "String"
@@ -12,9 +13,10 @@
       "token" : "'asdasd'"
     }
   }, {
-    "name"        : "Get Token",
+    "name"        : "Post Token",
     "description" : "Some description here",
     "route"       : "/token",
+    "method"      : "POST",
     "parameter"   : {
       "username" : "String,",
       "password" : "String"

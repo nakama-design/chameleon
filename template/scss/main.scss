@@ -51,6 +51,9 @@ body {
       .card-field {
         padding: 1rem;
       }
+      .card-field_route {
+        text-transform: initial;
+      }
       &:hover {
         background-color: transparentize($color: #F6F8FA, $amount: .6);
       }
