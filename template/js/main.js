@@ -64,11 +64,11 @@ const generate = () => {
     .then(res => {      
       const data = []
 
-      res.map(item => {
-        data.push(createGroup(item['group']))
+      Object.keys(res).map(item => {
+        data.push(createGroup(res[item]['group']))
 
-        if (item['routes']) {
-          item['routes'].map(item => {
+        if (res[item]['routes']) {
+          res[item]['routes'].map(item => {
             data.push(createField(item))
           })
         }

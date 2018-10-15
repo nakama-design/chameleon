@@ -99,8 +99,10 @@ module.exports = async (
     await fx.mkdirpSync(destination)
   }
 
-  write(info('Copying documentation template'))
-  await fx.copySync(template, destination)
+  if (!fs.existsSync(targetDir)) {
+    write(info('Copying documentation template'))
+    await fx.copySync(template, destination)
+  }
 
   write(info('Copying configuration file'))
   await fs.writeFileSync(configFile, JSON.stringify(config, false, 2))
