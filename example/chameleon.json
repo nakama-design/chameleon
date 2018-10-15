@@ -1,7 +1,0 @@
-{
-  "name": "Chameleon",
-  "host": "localhost",
-  "version": "v1",
-  "port": 3000,
-  "path": "/api/v1"
-}

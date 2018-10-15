@@ -1,0 +1,4 @@
+name: Chameleon
+path: /api/v1
+source: src
+destination: docs

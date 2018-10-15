@@ -1,5 +1,7 @@
-const glob = require('glob')
 const fs = require('fs')
+const fx = require('fs-extra')
+const glob = require('glob')
+const path = require('path')
 
 const tokenize = (arr) => {
   const bracket = {}
@@ -43,9 +45,9 @@ const extract = (arr) => {
   })
 }
 
-const list = (dir) => {
+const getRoutes = async (directory) => {
   return new Promise(resolve => {
-    glob(`${dir}/*`, async (err, files) => {    
+    glob(`${directory}/*`, async (err, files) => {    
       const data = []
   
       await files.filter(file => fs.lstatSync(file).isFile()).map(file => {
@@ -66,6 +68,38 @@ const list = (dir) => {
   })
 }
 
-list('./example').then(res => {
-  console.log(res)
-})
+module.exports = async (
+  config,
+  chameleon,
+  project,
+  write,
+  info,
+  done,
+  error
+) => {
+  const template = path.resolve(chameleon, '../template')
+  const destination = path.resolve(project, config['destination'] || 'docs')
+  const sourceDir = path.resolve(project, config['source'])
+  const targetDir = path.resolve(destination, 'data')
+  const configFile = path.resolve(targetDir, 'config.json')
+  const routesFile = path.resolve(targetDir, 'routes.json')
+
+  if (!fs.existsSync(destination)) {
+    write(info('Creating docs folder'))
+    await fx.mkdirpSync(destination)
+  }
+
+  write(info('Copying documentation template'))
+  await fx.copySync(template, destination)
+
+  write(info('Copying configuration file'))
+  await fs.writeFileSync(configFile, JSON.stringify(config, false, 2))
+
+  write(info('Collecting routes'))
+  const routes = await getRoutes(sourceDir)
+
+  write(info('Creating routes configuration'))
+  await fs.writeFileSync(routesFile, JSON.stringify(routes, false, 2))
+
+  return 'done'
+}
