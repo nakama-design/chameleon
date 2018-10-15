@@ -4,73 +4,36 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Shards Demo - A free and modern UI toolkit for web makers</title>
+  <title>Chameleon APIs Documentations</title>
   <meta name="description" content="A free and modern UI toolkit for web makers based on the popular Bootstrap 4 framework.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/shards.min.css?v=2.1.0">
-  <link rel="stylesheet" href="css/shards-demo.min.css?v=2.1.0">
+  <link rel="stylesheet" href="css/shards.min.css">
+  <link rel="stylesheet" href="css/main.min.css">
 </head>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-    <img src="images/demo/shards-logo-black.svg" alt="Example Navbar 1" class="mr-2" height="30">
-    <a class="navbar-brand" href="#">Shards</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown-7" aria-controls="navbarNavDropdown-7"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown-7">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="https://designrevision.com" id="navbarDropdownMenuLink-7" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Services
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink-7">
-            <a class="dropdown-item" href="#">Design</a>
-            <a class="dropdown-item" href="#">Development</a>
-            <a class="dropdown-item" href="#">Marketing</a>
-          </div>
-        </li>
-      </ul>
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="fa fa-twitter"></i>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="fa fa-facebook"></i>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="fa fa-linkedin"></i>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="fa fa-github"></i>
-          </a>
-        </li>
-      </ul>
+    <div class="container">
+      <a class="navbar-brand" href="#">Chameleon</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown-7" aria-controls="navbarNavDropdown-7"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown-7">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">All Routes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Documentations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Github</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
   <div class="loader">
@@ -83,79 +46,78 @@
     <div class="content clearfix">
       <!-- Typography -->
       <div id="typography" class="container mb-5">
-        <div class="section-title col-lg-8 col-md-10 ml-auto mr-auto">
-          <h3 class="mb-4">Typography</h3>
-          <p>Shards uses Poppins as its primary typeface for headings and the system’s UI font with a Roboto-first fallback
-            (only on non-Apple devices) for the remaining content.</p>
+        <div class="section-title">
+          <h3 class="mb-4">All Routes</h3>
+          <p>This pages are generated with command <b>chameleon create &lt;source folder&gt;</b>.</p>
         </div>
-
-        <div class="example col-md-10 ml-auto mr-auto">
-          <table class="table table-striped table-responsive-md">
-            <thead>
-              <tr>
-                <th>Type</th>
-                <th>Example</th>
-                <th>Font</th>
-                <th>Font Size</th>
-                <th>Line Height</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Heading 1</td>
-                <td>
-                  <h1>ABCabc</h1>
-                </td>
-                <td>Poppins Semibold</td>
-                <td>3.052 REM</td>
-                <td>3 REM</td>
-              </tr>
-              <tr>
-                <td>Heading 2</td>
-                <td>
-                  <h2>ABCabc</h2>
-                </td>
-                <td>Poppins Medium</td>
-                <td>2.441 REM</td>
-                <td>2.25 REM</td>
-              </tr>
-              <tr>
-                <td>Heading 3</td>
-                <td>
-                  <h3>ABCabc</h3>
-                </td>
-                <td>Poppins Medium</td>
-                <td>1.953 REM</td>
-                <td>2.25 REM</td>
-              </tr>
-              <tr>
-                <td>Paragraph</td>
-                <td>
-                  <p>ABCabc</p>
-                </td>
-                <td>System UI / Roboto</td>
-                <td>1 REM</td>
-                <td>1.5</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="card">
+          <div class="card-body">
+            <div class="card-row">
+              <div class="card-field card-field_name">Name</div>
+              <div class="card-field card-field_route">Route</div>
+              <div class="card-field card-field_description">Description</div>
+              <div class="card-field card-field_method">Method</div>
+            </div>
+            <div class="card-row card-row_group">
+              <div class="card-field card-field_name">Group Name</div>
+            </div>
+            <div class="card-row card-row_data">
+              <div class="card-field card-field_name">Get Token</div>
+              <div class="card-field card-field_route">/api/v1/getToken</div>
+              <div class="card-field card-field_description">API to get JWT Token for authentication</div>
+              <div class="card-field card-field_method card-field_success">GET</div>
+            </div>
+            <div class="card-row card-row_data">
+              <div class="card-field card-field_name">Get Token</div>
+              <div class="card-field card-field_route">/api/v1/getToken</div>
+              <div class="card-field card-field_description">API to get JWT Token for authentication</div>
+              <div class="card-field card-field_method card-field_success">GET</div>
+            </div>
+            <div class="card-row card-row_data">
+              <div class="card-field card-field_name">Get Token</div>
+              <div class="card-field card-field_route">/api/v1/getToken</div>
+              <div class="card-field card-field_description">API to get JWT Token for authentication</div>
+              <div class="card-field card-field_method card-field_success">GET</div>
+            </div>
+            <div class="card-row card-row_group">
+              <div class="card-field card-field_name">Group Name</div>
+            </div>
+            <div class="card-row card-row_data">
+              <div class="card-field card-field_name">Get Token</div>
+              <div class="card-field card-field_route">/api/v1/getToken</div>
+              <div class="card-field card-field_description">API to get JWT Token for authentication</div>
+              <div class="card-field card-field_method card-field_success">GET</div>
+            </div>
+            <div class="card-row card-row_data">
+              <div class="card-field card-field_name">Get Token</div>
+              <div class="card-field card-field_route">/api/v1/getToken</div>
+              <div class="card-field card-field_description">API to get JWT Token for authentication</div>
+              <div class="card-field card-field_method card-field_success">GET</div>
+            </div>
+            <div class="card-row card-row_data">
+              <div class="card-field card-field_name">Get Token</div>
+              <div class="card-field card-field_route">/api/v1/getToken</div>
+              <div class="card-field card-field_description">API to get JWT Token for authentication</div>
+              <div class="card-field card-field_method card-field_success">GET</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
     <footer class="main-footer py-5">
-      <p class="text-muted text-center small p-0 mb-4">&copy; Copyright 2018 — DesignRevision</p>
+      <p class="text-muted text-center small p-0 mb-4">&copy; Copyright 2018 — Chameleon</p>
       <div class="social d-table mx-auto">
-        <a class="twitter mx-3 h4 d-inline-block text-secondary" href="https://twitter.com/DesignRevision" target="_blank">
+        <a class="twitter mx-3 h4 d-inline-block text-secondary" href="#" target="_blank">
           <i class="fa fa-twitter"></i>
           <span class="sr-only">View our Twitter Profile</span>
         </a>
-        <a class="facebook mx-3 h4 d-inline-block text-secondary" href="https://www.facebook.com/designrevision" target="_blank">
+        <a class="facebook mx-3 h4 d-inline-block text-secondary" href="#" target="_blank">
           <i class="fa fa-facebook"></i>
           <span class="sr-only">View our Facebook Profile
             <span>
         </a>
-        <a class="github mx-3 h4 d-inline-block text-secondary" href="https://github.com/designrevision" target="_blank">
+        <a class="github mx-3 h4 d-inline-block text-secondary" href="#" target="_blank">
           <i class="fa fa-github"></i>
           <span class="sr-only">View our GitHub Profile</span>
         </a>
@@ -163,13 +125,11 @@
     </footer>
   </div>
 
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   <script src="js/shards.min.js"></script>
-  <script src="js/demo.min.js"></script>
+  <script src="js/main.js"></script>
 
 </body>
 

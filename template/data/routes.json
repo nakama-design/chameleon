@@ -1,0 +1,26 @@
+[{
+  "group": "all",
+  "routes": [{
+    "name"        : "Get Token",
+    "description" : "Some description here",
+    "route"       : "/token",
+    "parameter"   : {
+      "username" : "String,",
+      "password" : "String"
+    },
+    "response"    : {
+      "token" : "'asdasd'"
+    }
+  }, {
+    "name"        : "Get Token",
+    "description" : "Some description here",
+    "route"       : "/token",
+    "parameter"   : {
+      "username" : "String,",
+      "password" : "String"
+    },
+    "response"    : {
+      "token" : "'asdasd'"
+    }
+  }]
+}]
