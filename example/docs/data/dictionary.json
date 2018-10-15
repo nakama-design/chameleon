@@ -1,7 +1,0 @@
-{
-  "detail": {
-    "username": "Parameter \"username\" with type %s",
-    "email": "Parameter \"email\" with type %s",
-    "password": "Parameter \"password\" with type %s"
-  }
-}
