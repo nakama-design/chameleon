@@ -4,4 +4,6 @@ The next generation REST APIs Documentation, simple configuration with cross lan
 
 ### Preview v1.0
 
+On development version [Demo](https://muhibbudins.github.io/chameleon/template).
+
 ![Preview](routes.jpg)
