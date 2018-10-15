@@ -10,6 +10,8 @@ Generate APIs documentation only using this command :
 $ npx chame gen -d <directory>
 ```
 
+> Note : The command above, just for documentation. This project currently on development, so don't use it until release.
+
 ### Preview v1.0
 
 On development version [Demo](https://muhibbudins.github.io/chameleon/template).
