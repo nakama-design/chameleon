@@ -16,4 +16,4 @@ $ npx chame generate
 
 On development version [Demo](https://muhibbudins.github.io/chameleon/template).
 
-![Preview](routes.jpg)
+![Preview](chameleon.png)
