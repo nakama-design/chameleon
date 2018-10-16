@@ -16,6 +16,18 @@ body {
   &-body {
     padding: 1rem 0;
   }
+  &-control {
+    padding: 1rem 3rem;
+    padding-bottom: 0;
+    border-bottom: 1px solid transparentize($color: #D7DEE6, $amount: .5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .form-group {
+      max-width: 300px;
+    }
+  }
   &-row {
     width: 100%;
     font-size: 12px;
@@ -64,17 +76,17 @@ body {
     align-items: center;
 
     &_name {
-      width: 17%;
+      width: 22%;
       margin-left: 3%;
     }
     &_route {
       width: 20%;
     }
     &_description {
-      width: 40%;
+      width: 45%;
     }
     &_method {
-      width: 20%;
+      width: 10%;
     }
     &_primary {
       color: #007BFF;
@@ -92,20 +104,41 @@ body {
       color: #C4183C;
     }
   }
-  &-expanded {
-    min-height: 0;
-    max-height: 0;
-    padding: 0;
-    overflow: hidden;
-    transition: all .3s ease-in-out;
+}
+.collapse {
+  &-inner {
+    border-top: 1px solid transparentize($color: #D7DEE6, $amount: .5);
+    min-height: 400px;
+    background-color: #ffffff;
+    
+    .nav {
+      background-color: #ffffff;
+      border-bottom: 1px solid transparentize($color: #D7DEE6, $amount: .5);
 
-    &_content {
-      padding: 2rem;
+      &-item {
+        border-radius: 0;
+        border-right: 1px solid transparentize($color: #D7DEE6, $amount: .5);
+
+        &:last-child {
+          border-right: 0;
+        }
+      }
+      &-link {
+        border-radius: 0;
+        color: #0077ff;
+        padding: .8rem;
+
+        &.active {
+          color: #0077ff;
+          background-color: #eff2f7;
+        }
+      }
     }
-    &_active {
-      min-height: 400px;
-      max-height: auto;
-      border-top: 1px solid transparentize($color: #D7DEE6, $amount: .5);
+    .tab {
+      &-content {
+        padding: 0 3rem;
+        background-color: #ffffff;
+      }
     }
   }
 }

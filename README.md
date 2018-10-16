@@ -7,7 +7,7 @@ The next generation REST APIs Documentation, simple configuration with cross lan
 Generate APIs documentation only using this command :
 
 ```bash
-$ npx chame gen -d <directory>
+$ npx chame generate
 ```
 
 > Note : The command above, just for documentation. This project currently on development, so don't use it until release.

@@ -34,8 +34,8 @@ program
   .version(`Chameleon CLI v${package.version}`, '-v, --version')
 
 program
-  .command('init')
-  .usage('cham init ')
+  .command('generate')
+  .usage('chame generate ')
   .description('Generate chameleon project')
   .action((option) => {
     write(info(`Using Chameleon ${package.version}`))
