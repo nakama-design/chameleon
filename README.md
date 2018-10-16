@@ -32,7 +32,7 @@ source: src                       # Source directory to be generate by chameleon
 destination: docs                 # Destination folder (default: docs)
 ```
 
-> You can use separe folder for destination, eg. **public/docs**
+> You can use separate folder for destination, eg. **public/docs**
 
 Next, create block comment on your documented method. Like example below :
 
