@@ -2,6 +2,7 @@
 
 The next generation REST APIs Documentation, simple configuration with cross language and framework. Just write simple config and write **chameleon** comments on any your route method.
 
+
 ### Single Command
 
 Generate APIs documentation only using this command :
@@ -11,6 +12,12 @@ $ npx chame generate
 ```
 
 > Note : The command above, just for documentation. This project currently on development, so don't use it until release.
+
+### Preview v1.0
+
+On development version [Demo](https://muhibbudins.github.io/chameleon/template).
+
+![Preview](chameleon.png)
 
 ### Usage
 
@@ -68,8 +75,6 @@ $ npx chame generate
 
 > Note : This project under development, so don't use for production it after release. Except, you want to try this development version.
 
-### Preview v1.0
+### License
 
-On development version [Demo](https://muhibbudins.github.io/chameleon/template).
-
-![Preview](chameleon.png)
+This project under MIT License
