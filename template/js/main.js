@@ -37,7 +37,6 @@ const createUnique = () => {
 
 const createListener = () => {
   const listItem = document.querySelectorAll('.card-row_data')
-  hljs.initHighlightingOnLoad()
   listItem.forEach(element => {
     element.addEventListener('click', () => {
       element.scrollIntoView({
@@ -46,6 +45,9 @@ const createListener = () => {
       })
     }, false)
   })
+
+  hljs.initHighlightingOnLoad()
+  new ClipboardJS('[data-clipboard-target]')
 }
 
 const createGroup = (name) => {
@@ -58,8 +60,16 @@ const createGroup = (name) => {
   `
 }
 
-const copyThis = () => {
-  console.log('fooo')
+const createRequest = (obj, config) => {
+  return `
+    axios
+----- .get('${config['endpoint'] + config['path'] + obj['route']}', {
+-----   data: {}
+----- })
+----- .then(res => {
+-----   console.log(res)
+----- })
+  `.replace(/-----/g, '').trim()
 }
 
 const createField = (obj, config, index, sub) => {
@@ -81,8 +91,20 @@ const createField = (obj, config, index, sub) => {
             <div class="content-description">
               ${obj['description']}
             </div>
-            <div class="content-route" onclick="this.copyThis">
-              ${config['endpoint'] + config['path'] + obj['route']}
+            <div class="content-route">
+              <div id="route-path-${index}-${sub}">
+                ${config['endpoint'] + config['path'] + obj['route']}
+              </div>
+              <button class="btn btn-default" data-clipboard-target="#route-path-${index}-${sub}">Copy</button>
+            </div>
+            <div class="content-description">
+              Example Request
+            </div>
+            <div class="content-route">
+              <div id="request-${index}-${sub}">
+                <pre><code class="javascript">${createRequest(obj, config)}</code></pre>
+              </div>
+              <button class="btn btn-default" data-clipboard-target="#request-${index}-${sub}">Copy</button>
             </div>
           </div>
           <div class="content-right">
