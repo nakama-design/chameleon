@@ -58,6 +58,10 @@ const createGroup = (name) => {
   `
 }
 
+const copyThis = () => {
+  console.log('fooo')
+}
+
 const createField = (obj, config, index, sub) => {
   return `
     <div class="card-row card-row_data" id="${createUnique()}">
@@ -77,7 +81,7 @@ const createField = (obj, config, index, sub) => {
             <div class="content-description">
               ${obj['description']}
             </div>
-            <div class="content-route">
+            <div class="content-route" onclick="this.copyThis">
               ${config['endpoint'] + config['path'] + obj['route']}
             </div>
           </div>
