@@ -12,6 +12,10 @@
       "asyncGenerators": false,
       "generators": false,
       "async": false
+    }],
+    ["transform-es2015-template-literals", {
+      "loose": true,
+      "spec": true
     }]
   ]
 }
