@@ -5,19 +5,29 @@ const getClass = (method) => {
   switch (method) {
     case 'POST':
       return 'card-field_success'
-      break
     case 'PUT':
       return 'card-field_info'
-      break
     case 'PATCH':
       return 'card-field_warning'
-      break
     case 'DELETE':
       return 'card-field_danger'
-      break
     default:
       return 'card-field_primary'
-      break
+  }
+}
+
+const getBackroundColor = (method) => {
+  switch (method) {
+    case 'POST':
+      return '#17C671'
+    case 'PUT':
+      return '#00B8D8'
+    case 'PATCH':
+      return '#FFB400'
+    case 'DELETE':
+      return '#C4183C'
+    default:
+      return '#007BFF'
   }
 }
 
@@ -27,6 +37,7 @@ const createUnique = () => {
 
 const createListener = () => {
   const listItem = document.querySelectorAll('.card-row_data')
+  hljs.initHighlightingOnLoad()
   listItem.forEach(element => {
     element.addEventListener('click', () => {
       element.scrollIntoView({
@@ -35,43 +46,6 @@ const createListener = () => {
       })
     }, false)
   })
-}
-
-const createDetail = (obj) => {
-  return `
-    <table class="table table-borderless">
-      <tbody>
-        <tr>
-          <td style="width: 10%;">Name</td>
-          <td style="width: 1%;">:</td>
-          <td style="width: auto;">${obj['name']}</td>
-        </tr>
-        <tr>
-          <td style="width: 10%;">Description</td>
-          <td style="width: 1%;">:</td>
-          <td style="width: auto;">${obj['description']}</td>
-        </tr>
-        <tr>
-          <td style="width: 10%;">Route</td>
-          <td style="width: 1%;">:</td>
-          <td style="width: auto;">${obj['route']}</td>
-        </tr>
-        <tr>
-          <td style="width: 10%;">File</td>
-          <td style="width: 1%;">:</td>
-          <td style="width: auto;">${obj['file']}</td>
-        </tr>
-      </tbody>
-    </table>
-  `
-}
-
-const createResponse = (obj) => {
-  return 'createResponse'
-}
-
-const createSandbox = (obj) => {
-  return 'createSandbox'
 }
 
 const createGroup = (name) => {
@@ -84,38 +58,32 @@ const createGroup = (name) => {
   `
 }
 
-const createField = (obj, index, sub) => {
+const createField = (obj, config, index, sub) => {
   return `
     <div class="card-row card-row_data" id="${createUnique()}">
       <div class="card-field" data-toggle="collapse" data-target="#collapse-${index}-${sub}" aria-expanded="true" aria-controls="collapse-${index}-${sub}">
         <div class="card-field_name">${obj['name']}</div>
-        <div class="card-field_route">${obj['route']}</div>
+        <div class="card-field_route">${config['path'] + obj['route']}</div>
         <div class="card-field_description">${obj['description']}</div>
         <div class="card-field_method ${getClass(obj['method'])}">${obj['method']}</div>
       </div>
       <div id="collapse-${index}-${sub}" class="collapse" aria-labelledby="heading-${index}-${sub}" data-parent="#accordion">
         <div class="collapse-inner">
-          <ul class="nav nav-pills flex-column flex-sm-row mb-3" id="pills-tab" role="tablist">
-            <li class="flex-sm-fill text-sm-center nav-item">
-              <a class="nav-link active" id="pills-detail-tab" data-toggle="pill" href="#pills-detail" role="tab" aria-controls="pills-detail" aria-selected="true">detail</a>
-            </li>
-            <li class="flex-sm-fill text-sm-center nav-item">
-              <a class="nav-link" id="pills-response-tab" data-toggle="pill" href="#pills-response" role="tab" aria-controls="pills-response" aria-selected="false">response</a>
-            </li>
-            <li class="flex-sm-fill text-sm-center nav-item">
-              <a class="nav-link" id="pills-sanbox-tab" data-toggle="pill" href="#pills-sanbox" role="tab" aria-controls="pills-sanbox" aria-selected="false">sandbox</a>
-            </li>
-          </ul>
-          <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-detail" role="tabpanel" aria-labelledby="pills-detail-tab">
-              ${createDetail(obj)}
+          <div class="content-left">
+            <div class="content-title">
+              <span style="background-color: ${getBackroundColor(obj['method'])};">${obj['method']}</span>
+              ${obj['name']}
             </div>
-            <div class="tab-pane fade" id="pills-response" role="tabpanel" aria-labelledby="pills-response-tab">
-              ${createResponse(obj)}
+            <div class="content-description">
+              ${obj['description']}
             </div>
-            <div class="tab-pane fade" id="pills-sanbox" role="tabpanel" aria-labelledby="pills-sanbox-tab">
-              ${createSandbox(obj)}
+            <div class="content-route">
+              ${config['endpoint'] + config['path'] + obj['route']}
             </div>
+          </div>
+          <div class="content-right">
+            <div class="content-code">Response</div>
+            <pre><code class="json">${JSON.stringify(obj['response'], false, 4)}</code></pre>
           </div>
         </div>
       </div>
@@ -123,8 +91,14 @@ const createField = (obj, index, sub) => {
   `
 }
 
-const generate = () => {
-  fetch('data/routes.json')
+const getConfig = async () => {
+  return await fetch('data/config.json').then(res => res.json())
+}
+
+const generate = async () => {
+  const config = await getConfig()
+
+  await fetch('data/routes.json')
     .then(res => res.json())
     .then(res => {      
       const data = []
@@ -136,7 +110,7 @@ const generate = () => {
 
         if (res[index]['routes']) {
           res[index]['routes'].map((item, key) => {
-            data.push(createField(item, index, key))
+            data.push(createField(item, config, index, key))
           })
         }
       })

@@ -1,0 +1,49 @@
+{
+  "unknown": {
+    "group": "unknown",
+    "routes": [
+      {
+        "name": "List Users",
+        "description": "Show list of all user.",
+        "route": "/users",
+        "method": "GET",
+        "response": {
+          "view": "HTML"
+        },
+        "file": "/Users/katana/Sites/chameleon/example/src/adonis.js"
+      },
+      {
+        "name": "User Profile",
+        "description": "Show the profile for the given user.",
+        "route": "/user",
+        "method": "POST",
+        "parameter": {
+          "id": "Integer"
+        },
+        "response": {
+          "view": "HTML"
+        },
+        "file": "/Users/katana/Sites/chameleon/example/src/laravel.php"
+      }
+    ]
+  },
+  "foo": {
+    "group": "foo",
+    "routes": [
+      {
+        "name": "Get Token",
+        "description": "Some description here",
+        "route": "/token",
+        "method": "GET",
+        "group": "foo",
+        "parameter": {
+          "username": "String"
+        },
+        "response": {
+          "token": "JWT Token"
+        },
+        "file": "/Users/katana/Sites/chameleon/example/src/codeigniter.php"
+      }
+    ]
+  }
+}

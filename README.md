@@ -25,10 +25,11 @@ First of all, create **chameleon.yml** on your REST APIs project. With content l
 ```yaml
 # chameleon.yml
 
-name: Chameleon    # Project Name
-path: /api/v1      # Route Group from APIs
-source: src        # Source directory to be generate by chameleon
-destination: docs  # Destination folder (default: docs)
+name: Chameleon                   # Project Name
+endpoint: https://somedomain.com  # Domain name / IP for API endpoint 
+path: /api/v1                     # Route Group from APIs
+source: src                       # Source directory to be generate by chameleon
+destination: docs                 # Destination folder (default: docs)
 ```
 
 > You can use separe folder for destination, eg. **public/docs**

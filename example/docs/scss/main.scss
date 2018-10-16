@@ -109,57 +109,36 @@ body {
   &-inner {
     border-top: 1px solid transparentize($color: #D7DEE6, $amount: .5);
     min-height: 400px;
-    cursor: default;
     background-color: #ffffff;
-    text-transform: initial;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     
-    code {
-      padding: 1rem 1rem;
-    }
-  }
-}
-.content {
-  &-left,
-  &-right {
-    width: 60%;
-    min-height: 400px;
-  }
-  &-left {
-    margin-left: 2.5rem;
-    padding-right: 1rem;
-  }
-  &-right {
-    border-left: 1px solid transparentize($color: #D7DEE6, $amount: .5);
-  }
-  &-code {
-    padding: .5rem 1rem;
-  }
-  &-title {
-    font-size: 1rem;
+    .nav {
+      background-color: #ffffff;
+      border-bottom: 1px solid transparentize($color: #D7DEE6, $amount: .5);
 
-    span {
-      padding: .6rem 1rem .5rem 1rem;
-      border-radius: 4px;
-      font-size: .8rem;
-      margin-right: .5rem;
-      color: #ffffff;
+      &-item {
+        border-radius: 0;
+        border-right: 1px solid transparentize($color: #D7DEE6, $amount: .5);
+
+        &:last-child {
+          border-right: 0;
+        }
+      }
+      &-link {
+        border-radius: 0;
+        color: #0077ff;
+        padding: .8rem;
+
+        &.active {
+          color: #0077ff;
+          background-color: #eff2f7;
+        }
+      }
     }
-  }
-  &-description {
-    margin: 1rem 0 .5rem 0;
-  }
-  &-route {
-    padding: .5rem 1rem;
-    background-color: transparentize($color: #D7DEE6, $amount: .5);
-    border-radius: 4px;
-  }
-  pre {
-    margin: 0;
-  }
-  code {
-    min-height: 400px;
+    .tab {
+      &-content {
+        padding: 0 3rem;
+        background-color: #ffffff;
+      }
+    }
   }
 }
