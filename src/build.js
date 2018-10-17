@@ -43,7 +43,7 @@ const getContent = (string, file) => {
   const data = tokenize(cleanup.split('\n').filter(item => item !== ''))
   data['file'] = file
   return {
-    group: data['group'] || 'unknown',
+    group: data['group'] || 'any',
     content: data
   }
 }

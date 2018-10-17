@@ -52,10 +52,10 @@
         <div class="card">
           <div class="card-control">
             <div class="form-group">
-              <input type="text" class="form-control" id="searchInput" placeholder="Search endpoint ...">
+              <input type="text" class="form-control" id="searchInput" placeholder="Search endpoint ..." onkeyup="filterSearch(this.value)">
             </div>
             <div class="form-group">
-              <select class="form-control" id="filterGroup">
+              <select class="form-control" id="filterGroup" onchange="filterGroup(this.value)">
                 <option default>Choose Group</option>
               </select>
             </div>

@@ -1,5 +1,9 @@
+const pageData = {
+  config: {},
+  content: {}
+}
 const accordion = document.querySelector('.accordion')
-const filterGroup = document.querySelector('#filterGroup')
+const selectGroup = document.querySelector('#filterGroup')
 
 const getClass = (method) => {
   switch (method) {
@@ -29,6 +33,26 @@ const getBackroundColor = (method) => {
     default:
       return '#007BFF'
   }
+}
+
+const filterSearch = (value) => {
+  if (value.length > 3) {
+    console.log(pageData['content'])
+  }
+}
+
+const filterGroup = (value) => {
+  let bracket = {}
+
+  accordion.innerHTML = ''
+
+  if (pageData['content'][value]) {
+    bracket[value] = pageData['content'][value]
+  } else {
+    bracket = pageData['content']
+  }
+
+  renderPage(bracket)
 }
 
 const createUnique = () => {
@@ -145,30 +169,43 @@ const getConfig = async () => {
   return await fetch('data/config.json').then(res => res.json())
 }
 
+const renderPage = (content) => {
+  const data = []
+  const rendered = content || pageData['content']
+  
+  Object.keys(rendered).map(index => {
+    data.push(createGroup(rendered[index]['group']))
+
+    if (rendered[index]['routes']) {
+      rendered[index]['routes'].map((item, key) => {
+        data.push(createField(item, pageData['config'], index, key))
+      })
+    }
+  })
+
+  accordion.insertAdjacentHTML('beforeEnd', data.join('\n'))
+
+  createListener()
+}
+
 const generate = async () => {
   const config = await getConfig()
 
   await fetch('data/routes.json')
     .then(res => res.json())
     .then(res => {      
-      const data = []
+      pageData['config'] = config
+      pageData['content'] = res
+
       const group = []
-
+      
       Object.keys(res).map(index => {
-        data.push(createGroup(res[index]['group']))
         group.push(`<option value="${index}">Group ${index}</option>`)
-
-        if (res[index]['routes']) {
-          res[index]['routes'].map((item, key) => {
-            data.push(createField(item, config, index, key))
-          })
-        }
       })
 
-      accordion.insertAdjacentHTML('beforeEnd', data.join('\n'))
-      filterGroup.insertAdjacentHTML('beforeEnd', group.join('\n'))
+      selectGroup.insertAdjacentHTML('beforeEnd', group.join('\n'))
 
-      createListener()
+      renderPage()
     })
 }
 
