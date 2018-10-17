@@ -36,8 +36,31 @@ const getBackroundColor = (method) => {
 }
 
 const filterSearch = (value) => {
+  let group = {}
+  let bracket = []
+
   if (value.length > 3) {
-    console.log(pageData['content'])
+    Object.keys(pageData['content']).map(group => {
+      const result = pageData['content'][group]['routes'].filter(route => {
+        return route['name'].toLowerCase().indexOf(value.toLowerCase()) > -1 ||
+          route['description'].toLowerCase().indexOf(value.toLowerCase()) > -1 ||
+          route['route'].toLowerCase().indexOf(value.toLowerCase()) > -1
+      })
+
+      if (result.length > 0) {
+        bracket[group] = {
+          group: group,
+          routes: result
+        }
+      }
+    })
+
+    accordion.innerHTML = ''    
+    renderPage(bracket)
+  } else {
+
+    accordion.innerHTML = ''
+    renderPage(pageData['content'])
   }
 }
 
