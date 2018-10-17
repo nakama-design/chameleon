@@ -60,16 +60,40 @@ const createGroup = (name) => {
   `
 }
 
+const createDummy = (type) => {
+  switch (type) {
+    case 'Integer':
+      return 123456
+  
+    default:
+      return 'John Doe'
+  }
+}
+
+const createParameter = (obj) => {
+  if (obj['parameter']) {
+    const bracket = {}
+    const types = obj['method'] === 'GET' ? 'param' : 'data'
+
+    Object.keys(obj['parameter']).map(item => {
+      bracket[item] = createDummy(obj['parameter'][item])
+    })
+
+    return `, {
+      ${types}: ${JSON.stringify(bracket, false, 4)}
+    }`
+  }
+  return ''
+}
+
 const createRequest = (obj, config) => {
   return `
     axios
------ .get('${config['endpoint'] + config['path'] + obj['route']}', {
------   data: {}
------ })
------ .then(res => {
------   console.log(res)
------ })
-  `.replace(/-----/g, '').trim()
+  .${obj['method'].toLowerCase()}('${config['endpoint'] + config['path'] + obj['route']}'${createParameter(obj)})
+  .then(res => {
+    console.log(res)
+  })
+  `.trim()
 }
 
 const createField = (obj, config, index, sub) => {
