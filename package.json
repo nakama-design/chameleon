@@ -1,6 +1,6 @@
 {
   "name": "chame",
-  "version": "0.2.0-dev",
+  "version": "0.8.0-dev",
   "description": "🍃 The next generation REST APIs Documentation",
   "main": "index.js",
   "engines": {
