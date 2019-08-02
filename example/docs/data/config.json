@@ -1,7 +1,0 @@
-{
-  "name": "Chameleon",
-  "endpoint": "https://somedomain.com",
-  "path": "/api/v1",
-  "source": "src",
-  "destination": "docs"
-}
