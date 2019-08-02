@@ -1,0 +1,15 @@
+{
+  "name": "template",
+  "private": true,
+  "scripts": {
+    "build": "gridsome build",
+    "develop": "gridsome develop",
+    "explore": "gridsome explore"
+  },
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "bootstrap-vue": "^2.0.0-rc.27",
+    "gridsome": "^0.6.0",
+    "vue": "^2.6.10"
+  }
+}
