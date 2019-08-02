@@ -1,24 +1,81 @@
+const pageData = {
+  config: {},
+  content: {}
+}
 const accordion = document.querySelector('.accordion')
-const filterGroup = document.querySelector('#filterGroup')
+const selectGroup = document.querySelector('#filterGroup')
 
 const getClass = (method) => {
   switch (method) {
     case 'POST':
       return 'card-field_success'
-      break
     case 'PUT':
       return 'card-field_info'
-      break
     case 'PATCH':
       return 'card-field_warning'
-      break
     case 'DELETE':
       return 'card-field_danger'
-      break
     default:
       return 'card-field_primary'
-      break
   }
+}
+
+const getBackroundColor = (method) => {
+  switch (method) {
+    case 'POST':
+      return '#17C671'
+    case 'PUT':
+      return '#00B8D8'
+    case 'PATCH':
+      return '#FFB400'
+    case 'DELETE':
+      return '#C4183C'
+    default:
+      return '#007BFF'
+  }
+}
+
+const filterSearch = (value) => {
+  let group = {}
+  let bracket = []
+
+  if (value.length > 3) {
+    Object.keys(pageData['content']).map(group => {
+      const result = pageData['content'][group]['routes'].filter(route => {
+        return route['name'].toLowerCase().indexOf(value.toLowerCase()) > -1 ||
+          route['description'].toLowerCase().indexOf(value.toLowerCase()) > -1 ||
+          route['route'].toLowerCase().indexOf(value.toLowerCase()) > -1
+      })
+
+      if (result.length > 0) {
+        bracket[group] = {
+          group: group,
+          routes: result
+        }
+      }
+    })
+
+    accordion.innerHTML = ''    
+    renderPage(bracket)
+  } else {
+
+    accordion.innerHTML = ''
+    renderPage(pageData['content'])
+  }
+}
+
+const filterGroup = (value) => {
+  let bracket = {}
+
+  accordion.innerHTML = ''
+
+  if (pageData['content'][value]) {
+    bracket[value] = pageData['content'][value]
+  } else {
+    bracket = pageData['content']
+  }
+
+  renderPage(bracket)
 }
 
 const createUnique = () => {
@@ -35,43 +92,9 @@ const createListener = () => {
       })
     }, false)
   })
-}
 
-const createDetail = (obj) => {
-  return `
-    <table class="table table-borderless">
-      <tbody>
-        <tr>
-          <td style="width: 10%;">Name</td>
-          <td style="width: 1%;">:</td>
-          <td style="width: auto;">${obj['name']}</td>
-        </tr>
-        <tr>
-          <td style="width: 10%;">Description</td>
-          <td style="width: 1%;">:</td>
-          <td style="width: auto;">${obj['description']}</td>
-        </tr>
-        <tr>
-          <td style="width: 10%;">Route</td>
-          <td style="width: 1%;">:</td>
-          <td style="width: auto;">${obj['route']}</td>
-        </tr>
-        <tr>
-          <td style="width: 10%;">File</td>
-          <td style="width: 1%;">:</td>
-          <td style="width: auto;">${obj['file']}</td>
-        </tr>
-      </tbody>
-    </table>
-  `
-}
-
-const createResponse = (obj) => {
-  return 'createResponse'
-}
-
-const createSandbox = (obj) => {
-  return 'createSandbox'
+  hljs.initHighlightingOnLoad()
+  new ClipboardJS('[data-clipboard-target]')
 }
 
 const createGroup = (name) => {
@@ -84,38 +107,80 @@ const createGroup = (name) => {
   `
 }
 
-const createField = (obj, index, sub) => {
+const createDummy = (type) => {
+  switch (type) {
+    case 'Integer':
+      return 123456
+  
+    default:
+      return 'John Doe'
+  }
+}
+
+const createParameter = (obj) => {
+  if (obj['parameter']) {
+    const bracket = {}
+    const types = obj['method'] === 'GET' ? 'param' : 'data'
+
+    Object.keys(obj['parameter']).map(item => {
+      bracket[item] = createDummy(obj['parameter'][item])
+    })
+
+    return `, {
+      ${types}: ${JSON.stringify(bracket, false, 4)}
+    }`
+  }
+  return ''
+}
+
+const createRequest = (obj, config) => {
+  return `
+    axios
+  .${obj['method'].toLowerCase()}('${config['endpoint'] + config['path'] + obj['route']}'${createParameter(obj)})
+  .then(res => {
+    console.log(res)
+  })
+  `.trim()
+}
+
+const createField = (obj, config, index, sub) => {
   return `
     <div class="card-row card-row_data" id="${createUnique()}">
       <div class="card-field" data-toggle="collapse" data-target="#collapse-${index}-${sub}" aria-expanded="true" aria-controls="collapse-${index}-${sub}">
         <div class="card-field_name">${obj['name']}</div>
-        <div class="card-field_route">${obj['route']}</div>
+        <div class="card-field_route">${config['path'] + obj['route']}</div>
         <div class="card-field_description">${obj['description']}</div>
         <div class="card-field_method ${getClass(obj['method'])}">${obj['method']}</div>
       </div>
       <div id="collapse-${index}-${sub}" class="collapse" aria-labelledby="heading-${index}-${sub}" data-parent="#accordion">
         <div class="collapse-inner">
-          <ul class="nav nav-pills flex-column flex-sm-row mb-3" id="pills-tab" role="tablist">
-            <li class="flex-sm-fill text-sm-center nav-item">
-              <a class="nav-link active" id="pills-detail-tab" data-toggle="pill" href="#pills-detail" role="tab" aria-controls="pills-detail" aria-selected="true">detail</a>
-            </li>
-            <li class="flex-sm-fill text-sm-center nav-item">
-              <a class="nav-link" id="pills-response-tab" data-toggle="pill" href="#pills-response" role="tab" aria-controls="pills-response" aria-selected="false">response</a>
-            </li>
-            <li class="flex-sm-fill text-sm-center nav-item">
-              <a class="nav-link" id="pills-sanbox-tab" data-toggle="pill" href="#pills-sanbox" role="tab" aria-controls="pills-sanbox" aria-selected="false">sandbox</a>
-            </li>
-          </ul>
-          <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-detail" role="tabpanel" aria-labelledby="pills-detail-tab">
-              ${createDetail(obj)}
+          <div class="content-left">
+            <div class="content-title">
+              <span style="background-color: ${getBackroundColor(obj['method'])};">${obj['method']}</span>
+              ${obj['name']}
             </div>
-            <div class="tab-pane fade" id="pills-response" role="tabpanel" aria-labelledby="pills-response-tab">
-              ${createResponse(obj)}
+            <div class="content-description">
+              ${obj['description']}
             </div>
-            <div class="tab-pane fade" id="pills-sanbox" role="tabpanel" aria-labelledby="pills-sanbox-tab">
-              ${createSandbox(obj)}
+            <div class="content-route">
+              <div id="route-path-${index}-${sub}">
+                ${config['endpoint'] + config['path'] + obj['route']}
+              </div>
+              <button class="btn btn-default" data-clipboard-target="#route-path-${index}-${sub}">Copy</button>
             </div>
+            <div class="content-description">
+              Example Request
+            </div>
+            <div class="content-route">
+              <div id="request-${index}-${sub}">
+                <pre><code class="javascript">${createRequest(obj, config)}</code></pre>
+              </div>
+              <button class="btn btn-default" data-clipboard-target="#request-${index}-${sub}">Copy</button>
+            </div>
+          </div>
+          <div class="content-right">
+            <div class="content-code">Response</div>
+            <pre><code class="json">${JSON.stringify(obj['response'], false, 4)}</code></pre>
           </div>
         </div>
       </div>
@@ -123,28 +188,47 @@ const createField = (obj, index, sub) => {
   `
 }
 
-const generate = () => {
-  fetch('data/routes.json')
+const getConfig = async () => {
+  return await fetch('data/config.json').then(res => res.json())
+}
+
+const renderPage = (content) => {
+  const data = []
+  const rendered = content || pageData['content']
+  
+  Object.keys(rendered).map(index => {
+    data.push(createGroup(rendered[index]['group']))
+
+    if (rendered[index]['routes']) {
+      rendered[index]['routes'].map((item, key) => {
+        data.push(createField(item, pageData['config'], index, key))
+      })
+    }
+  })
+
+  accordion.insertAdjacentHTML('beforeEnd', data.join('\n'))
+
+  createListener()
+}
+
+const generate = async () => {
+  const config = await getConfig()
+
+  await fetch('data/routes.json')
     .then(res => res.json())
     .then(res => {      
-      const data = []
+      pageData['config'] = config
+      pageData['content'] = res
+
       const group = []
-
+      
       Object.keys(res).map(index => {
-        data.push(createGroup(res[index]['group']))
         group.push(`<option value="${index}">Group ${index}</option>`)
-
-        if (res[index]['routes']) {
-          res[index]['routes'].map((item, key) => {
-            data.push(createField(item, index, key))
-          })
-        }
       })
 
-      accordion.insertAdjacentHTML('beforeEnd', data.join('\n'))
-      filterGroup.insertAdjacentHTML('beforeEnd', group.join('\n'))
+      selectGroup.insertAdjacentHTML('beforeEnd', group.join('\n'))
 
-      createListener()
+      renderPage()
     })
 }
 

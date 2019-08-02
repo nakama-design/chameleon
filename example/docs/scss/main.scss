@@ -14,7 +14,7 @@ body {
 }
 .card {
   &-body {
-    padding: 1rem 0;
+    padding: 1rem 0 0 0;
   }
   &-control {
     padding: 1rem 3rem;
@@ -109,36 +109,75 @@ body {
   &-inner {
     border-top: 1px solid transparentize($color: #D7DEE6, $amount: .5);
     min-height: 400px;
+    cursor: default;
     background-color: #ffffff;
+    text-transform: initial;
+    display: flex;
+    justify-content: space-between;
     
-    .nav {
-      background-color: #ffffff;
-      border-bottom: 1px solid transparentize($color: #D7DEE6, $amount: .5);
+    code {
+      padding: 1rem 1rem;
+    }
+  }
+}
+.content {
+  &-left,
+  &-right {
+    width: 60%;
+    min-height: 400px;
+  }
+  &-left {
+    padding: 1.5rem 1rem 1.5rem 3rem;
+  }
+  &-right {
+    border-left: 1px solid transparentize($color: #D7DEE6, $amount: .5);
+    background-color: #eaeef3;
+  }
+  &-code {
+    padding: .5rem 1rem;
+    background-color: #ffffff;
+  }
+  &-title {
+    font-size: 1rem;
 
-      &-item {
-        border-radius: 0;
-        border-right: 1px solid transparentize($color: #D7DEE6, $amount: .5);
+    span {
+      padding: .6rem 1rem .5rem 1rem;
+      border-radius: 4px;
+      font-size: .8rem;
+      margin-right: .5rem;
+      color: #ffffff;
+    }
+  }
+  &-description {
+    margin: 1rem 0 .5rem 0;
+  }
+  &-route {
+    padding: .5rem 1rem;
+    background-color: transparentize($color: #D7DEE6, $amount: .5);
+    border-radius: 4px;
+    position: relative;
 
-        &:last-child {
-          border-right: 0;
-        }
-      }
-      &-link {
-        border-radius: 0;
-        color: #0077ff;
-        padding: .8rem;
+    button {
+      padding: .4rem .5rem;
+      font-size: .6rem;
+      position: absolute;
+      top: 50%;
+      right: 1rem;
+      transform: translateY(-50%);
+    }
+    &:last-child {
+      padding: .5rem;
 
-        &.active {
-          color: #0077ff;
-          background-color: #eff2f7;
-        }
+      button {
+        top: 1rem;
+        transform: translate(0);
       }
     }
-    .tab {
-      &-content {
-        padding: 0 3rem;
-        background-color: #ffffff;
-      }
-    }
+  }
+  pre {
+    margin: 0;
+  }
+  code {
+    min-height: 200px;
   }
 }

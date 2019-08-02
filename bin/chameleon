@@ -5,6 +5,7 @@ const path = require('path')
 const read = require('read-yaml')
 const chalk = require('chalk')
 const build = require('../src/build')
+const start = require('../src/start')
 const program = require('commander')
 const package = require('../package')
 const project = process.cwd()
@@ -35,7 +36,7 @@ program
 
 program
   .command('generate')
-  .usage('chame generate ')
+  .usage('chame generate')
   .description('Generate chameleon project')
   .action((option) => {
     write(info(`Using Chameleon ${package.version}`))
@@ -44,7 +45,7 @@ program
 
     if (!fs.existsSync(chameyaml)) {
       write(error('Chameleon config doesn\'t exists, make sure you\'ve already read a docs.'))
-      write(error('Read a documentation here https://github.com/muhibbudins/chameleon#config'))
+      write(error('Read a documentation here https://github.com/nakama-design/chameleon#config'))
 
       process.exit(0)
     }
@@ -54,6 +55,35 @@ program
       read.sync(chameyaml),
       chameleon,
       project,
+      write,
+      info,
+      done,
+      error
+    )
+    .then(() => {
+      write(done('Docs already generated'))
+    })
+  })
+
+program
+  .command('start')
+  .usage('chame start')
+  .description('start chameleon project')
+  .action((option) => {
+    write(info(`Using Chameleon ${package.version}`))
+
+    const chameyaml = path.resolve(project, 'chameleon.yml')
+
+    if (!fs.existsSync(chameyaml)) {
+      write(error('Chameleon config doesn\'t exists, make sure you\'ve already read a docs.'))
+      write(error('Read a documentation here https://github.com/nakama-design/chameleon#config'))
+
+      process.exit(0)
+    }
+
+    start(
+      project,
+      read.sync(chameyaml),
       write,
       info,
       done,

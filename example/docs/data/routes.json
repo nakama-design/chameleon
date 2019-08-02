@@ -1,9 +1,9 @@
 {
-  "unknown": {
-    "group": "unknown",
+  "any": {
+    "group": "any",
     "routes": [
       {
-        "name": "List Users",
+        "name": "Show User",
         "description": "Show list of all user.",
         "route": "/users",
         "method": "GET",
@@ -13,10 +13,10 @@
         "file": "/Users/katana/Sites/chameleon/example/src/adonis.js"
       },
       {
-        "name": "User Profile",
+        "name": "Show User",
         "description": "Show the profile for the given user.",
         "route": "/user",
-        "method": "POST",
+        "method": "GET",
         "parameter": {
           "id": "Integer"
         },

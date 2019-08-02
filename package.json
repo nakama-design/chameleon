@@ -1,6 +1,6 @@
 {
   "name": "chame",
-  "version": "0.8.0-dev",
+  "version": "1.0.0",
   "description": "🍃 The next generation REST APIs Documentation",
   "main": "index.js",
   "engines": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/muhibbudins/chameleon.git"
+    "url": "git+https://github.com/nakama-design/chameleon.git"
   },
   "scripts": {
     "sass": "sass template/scss/main.scss template/css/main.min.css --style compressed --watch",
@@ -21,9 +21,9 @@
   "author": "Muhibbudin Suretno <muhibbudinsuretno1@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/muhibbudins/chameleon/issues"
+    "url": "https://github.com/nakama-design/chameleon/issues"
   },
-  "homepage": "https://github.com/muhibbudins/chameleon#readme",
+  "homepage": "https://github.com/nakama-design/chameleon#readme",
   "dependencies": {
     "chalk": "^2.4.1",
     "chokidar": "^2.0.4",

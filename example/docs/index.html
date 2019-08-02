@@ -4,11 +4,12 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Chameleon APIs Documentations</title>
-  <meta name="description" content="A free and modern UI toolkit for web makers based on the popular Bootstrap 4 framework.">
+  <title>Chameleon — APIs Documentations</title>
+  <meta name="description" content="The next generation REST APIs Documentation, with simple configuration, cross language and framework.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/mono-blue.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/shards.min.css">
   <link rel="stylesheet" href="css/main.min.css">
 </head>
@@ -26,13 +27,13 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown-7">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">All Routes</a>
+            <a class="nav-link" href="index.html">All Routes</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Documentations</a>
+            <a class="nav-link" target="_blank" href="https://github.com/nakama-design/chameleon#usage">Documentations</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Github</a>
+            <a class="nav-link" target="_blank" href="https://github.com/nakama-design/chameleon">Github</a>
           </li>
         </ul>
       </div>
@@ -52,10 +53,10 @@
         <div class="card">
           <div class="card-control">
             <div class="form-group">
-              <input type="text" class="form-control" id="searchInput" placeholder="Search endpoint ...">
+              <input type="text" class="form-control" id="searchInput" placeholder="Search endpoint ..." onkeyup="filterSearch(this.value)">
             </div>
             <div class="form-group">
-              <select class="form-control" id="filterGroup">
+              <select class="form-control" id="filterGroup" onchange="filterGroup(this.value)">
                 <option default>Choose Group</option>
               </select>
             </div>
@@ -80,26 +81,34 @@
       <div class="social d-table mx-auto">
         <a class="twitter mx-3 h4 d-inline-block text-secondary" href="#" target="_blank">
           <i class="fa fa-twitter"></i>
-          <span class="sr-only">View our Twitter Profile</span>
+          <span class="sr-only">View our Twitter</span>
         </a>
         <a class="facebook mx-3 h4 d-inline-block text-secondary" href="#" target="_blank">
           <i class="fa fa-facebook"></i>
-          <span class="sr-only">View our Facebook Profile
-            <span>
+          <span class="sr-only">View our Facebook<span>
         </a>
         <a class="github mx-3 h4 d-inline-block text-secondary" href="#" target="_blank">
           <i class="fa fa-github"></i>
-          <span class="sr-only">View our GitHub Profile</span>
+          <span class="sr-only">View our GitHub</span>
         </a>
       </div>
     </footer>
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/json.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.1/clipboard.min.js"></script>
+
+  <script src="https://unpkg.com/prettier@1.13.0/standalone.js"></script>
+  <script src="https://unpkg.com/prettier@1.13.0/parser-graphql.js"></script>
+
   <script src="js/shards.min.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/main.min.js"></script>
 
 </body>
 

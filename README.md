@@ -14,7 +14,7 @@ $ npx chame generate
 
 ### Preview v1.0
 
-On development version [Demo](https://muhibbudins.github.io/chameleon/template).
+On development version [Demo](https://nakama-design.github.io/chameleon/template).
 
 ![Preview](chameleon.png)
 
