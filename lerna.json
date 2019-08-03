@@ -1,10 +1,6 @@
 {
-  "npmClient": "yarn",
-  "useWorkspaces": true,
-  "independent": true,
-  "version": "independent",
-  "ignoreChanges": [
-    "**/__fixtures__/**",
-    "**/*.md"
-  ]
+  "packages": [
+    "packages/*"
+  ],
+  "version": "0.0.0"
 }

@@ -51,11 +51,6 @@
           v-if="data.format === 'markdown'"
           :content="data.content"
         />
-        <!-- Wrapper for Schema -->
-        <CardSchema
-          v-if="data.format === 'schema'"
-          :content="data"
-        />
         <!-- Wrapper for Repl -->
         <CardRepl
           v-if="data.format === 'repl'"
@@ -70,7 +65,6 @@
 import { MaximizeIcon, MinimizeIcon } from 'vue-feather-icons'
 import CardComponent from '@/components/CardComponent.vue'
 import CardMarkdown from '@/components/CardMarkdown.vue'
-import CardSchema from '@/components/CardSchema.vue'
 import CardRepl from '@/components/CardRepl.vue'
 
 export default {
@@ -87,7 +81,6 @@ export default {
   components: {
     CardComponent,
     CardMarkdown,
-    CardSchema,
     CardRepl,
     MaximizeIcon,
     MinimizeIcon
@@ -139,9 +132,8 @@ export default {
     }
     &-action {
       position: absolute;
-      top: 50%;
+      top: 36px;
       right: 36px;
-      transform: translateY(-50%);
 
       &_button {
         cursor: pointer;
@@ -171,10 +163,19 @@ export default {
         color: $dark-grey;
       }
     }
+    &-body {
+      color: #676A6B;
+    }
+    .collapse {
+      background-color: #F7FAFA;
+      border-radius: 6px;
+      margin-top: 10px;
+      transition: all .3s ease-in-out;
+    }
   }
   .dark-mode {
     .card {
-      background: $dark-mode;
+      background: #151A44;
       border: 0.5px solid $dark-mode-border;
 
       &-action {
@@ -186,6 +187,12 @@ export default {
         &_description {
           color: $white;
         }
+      }
+      &-body {
+        color: $white;
+      }
+      .collapse {
+        background-color: #212658;
       }
     }
   }

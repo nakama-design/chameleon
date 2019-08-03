@@ -11,7 +11,7 @@ function addStyleResource (rule) {
 }
 
 module.exports = {
-  siteName: 'Chameleon',
+  siteName: 'Laboon',
   plugins: [],
   chainWebpack (config) {
     ['vue-modules', 'vue', 'normal-modules', 'normal'].forEach(type => {

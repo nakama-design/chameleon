@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/laboon-docs/laboon/issues"
   },
-  "homepage": "https://github.com/laboon-docs/laboon#readme"
+  "homepage": "https://github.com/laboon-docs/laboon#readme",
+  "devDependencies": {
+    "lerna": "^3.14.0"
+  }
 }

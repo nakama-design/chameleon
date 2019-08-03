@@ -13,7 +13,6 @@ const FLAG_SUB_ATTRIBUTES = /\@([^\s]+)\s(.*)/;
 const FLAG_SCHEMA = /\[(flow|sequence|gantt|class|git)\]((.|[\r\n])*?)\[\/(flow|sequence|gantt|class|git)\]/gm
 const RESULTS = {
   documents: [],
-  schema: [],
   components: [],
   routes: []
 };

@@ -11,6 +11,7 @@
     "bootstrap-vue": "^2.0.0-rc.27",
     "gridsome": "^0.6.0",
     "marked": "^0.7.0",
+    "node-sass": "^4.12.0",
     "sass-loader": "^7.1.0",
     "style-resources-loader": "^1.2.1",
     "vue": "^2.6.10",

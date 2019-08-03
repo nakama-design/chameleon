@@ -1,6 +1,6 @@
 ----
 name : Example Document
-type : Schema
+type : Documents
 ----
 
 # Foo bar
