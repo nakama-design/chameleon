@@ -205,8 +205,8 @@ export default {
       &-body {
         color: $white;
       }
-      .collapse {
-        background-color: #212658;
+      .viewer-content {
+        color: $dark-grey;
       }
     }
   }

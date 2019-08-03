@@ -71,7 +71,7 @@ export default {
 
 <style lang="scss">
   article {
-    height: 100vh;
+    min-height: 100vh;
     transition: all .3s ease-in-out;
   }
   .navbar {
@@ -99,7 +99,8 @@ export default {
     font-size: 28px;
   }
   .dark-mode {
-    background: $dark-mode;
+    background: rgb(6, 9, 29);
+    color: $grey;
 
     .navbar {
       background: $dark-mode;
@@ -109,6 +110,10 @@ export default {
       .nav-link,
       .custom-switch label {
         color: $grey;
+      }
+      &-brand:hover,
+      .nav-link:hover {
+        color: $white;
       }
     }
   }
