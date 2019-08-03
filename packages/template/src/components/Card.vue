@@ -21,42 +21,46 @@
       aria-controls="collapse-4"
       @click="visible = !visible"
     >
-      <div class="card-item">
+      <div
+        v-for="(value, key) in fields[data.type]"
+        :key="key"
+        class="card-item"
+      >
         <div class="card-item_title">
-          name
+          {{ value }}
         </div>
         <div class="card-item_description">
-          Sample Name
-        </div>
-      </div>
-      <div class="card-item">
-        <div class="card-item_title">
-          name
-        </div>
-        <div class="card-item_description">
-          Sample Name
-        </div>
-      </div>
-      <div class="card-item">
-        <div class="card-item_title">
-          name
-        </div>
-        <div class="card-item_description">
-          Sample Name
+          {{ data[key] }}
         </div>
       </div>
     </div>
     <b-collapse
-      :id="index"
+      :id="index.toString()"
       v-model="visible"
       accordion="accordions"
       role="tabpanel"
     >
       <div class="card-body">
-        <CardComponent />
-        <CardMarkdown />
-        <CardSchema />
-        <CardRepl />
+        <!-- Wrapper for Component -->
+        <CardComponent
+          v-if="data.format === 'component'"
+          :content="data"
+        />
+        <!-- Wrapper for Markdown -->
+        <CardMarkdown
+          v-if="data.format === 'markdown'"
+          :content="data.content"
+        />
+        <!-- Wrapper for Schema -->
+        <CardSchema
+          v-if="data.format === 'schema'"
+          :content="data"
+        />
+        <!-- Wrapper for Repl -->
+        <CardRepl
+          v-if="data.format === 'repl'"
+          :content="data"
+        />
       </div>
     </b-collapse>
   </b-card>
@@ -73,7 +77,11 @@ export default {
   props: {
     index: {
       type: [Number, String],
-      default: () => 'X'
+      default: () => ''
+    },
+    data: {
+      type: [Object, Array],
+      default: () => ''
     }
   },
   components: {
@@ -88,12 +96,12 @@ export default {
     return {
       visible: false,
       full: false,
-      fields: [
-        'name',
-        'method',
-        'group',
-        'description'
-      ]
+      fields: {
+        document: {
+          name: "Document",
+          format: "Type"
+        }
+      }
     }
   },
   methods: {
@@ -145,7 +153,7 @@ export default {
       cursor: pointer;
     }
     &-item {
-      margin-right: 24px;
+      margin-right: 36px;
 
       &:last-child {
         margin: 0;

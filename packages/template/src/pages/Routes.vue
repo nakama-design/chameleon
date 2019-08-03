@@ -1,14 +1,36 @@
 <template>
   <Layout>
-    <h1>Routes</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error doloremque omnis animi, eligendi magni a voluptatum, vitae, consequuntur rerum illum odit fugit assumenda rem dolores inventore iste reprehenderit maxime! Iusto.</p>
+    <Heading
+      title="Routes"
+    />
+    <div role="tablist">
+      <Card
+        v-for="(item, index) in routes"
+        :key="index"
+        :index="index"
+        :data="item"
+      />
+    </div>
   </Layout>
 </template>
 
 <script>
+import Routes from '@/data/routes.json'
+import Heading from '@/components/Heading.vue'
+import Card from '@/components/Card.vue'
+
 export default {
   metaInfo: {
     title: 'Routes'
+  },
+  components: {
+    Heading,
+    Card
+  },
+  data() {
+    return {
+      ...Routes
+    }
   }
 }
 </script>

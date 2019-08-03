@@ -5,10 +5,10 @@
     />
     <div role="tablist">
       <Card
-        index="1"
-      />
-      <Card
-        index="2"
+        v-for="(item, index) in documents"
+        :key="index"
+        :index="index"
+        :data="item"
       />
     </div>
   </Layout>
@@ -29,7 +29,7 @@ export default {
   },
   data() {
     return {
-      Documents
+      ...Documents
     }
   }
 }

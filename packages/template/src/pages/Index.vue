@@ -1,14 +1,23 @@
 <template>
   <Layout>
-    <h1>Home</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error doloremque omnis animi, eligendi magni a voluptatum, vitae, consequuntur rerum illum odit fugit assumenda rem dolores inventore iste reprehenderit maxime! Iusto.</p>
+    <Heading
+      title="Home"
+    />
+    <div>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga numquam architecto voluptas possimus in, illum ut. Est, reprehenderit ea. Magnam doloribus beatae dolore corporis tempora, accusantium sapiente quaerat consequatur sint.
+    </div>
   </Layout>
 </template>
 
 <script>
+import Heading from '@/components/Heading.vue'
+
 export default {
   metaInfo: {
     title: 'Home'
+  },
+  components: {
+    Heading
   }
 }
 </script>

@@ -1,14 +1,36 @@
 <template>
   <Layout>
-    <h1>Schema</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error doloremque omnis animi, eligendi magni a voluptatum, vitae, consequuntur rerum illum odit fugit assumenda rem dolores inventore iste reprehenderit maxime! Iusto.</p>
+    <Heading
+      title="Schema"
+    />
+    <div role="tablist">
+      <Card
+        v-for="(item, index) in schema"
+        :key="index"
+        :index="index"
+        :data="item"
+      />
+    </div>
   </Layout>
 </template>
 
 <script>
+import Schema from '@/data/schema.json'
+import Heading from '@/components/Heading.vue'
+import Card from '@/components/Card.vue'
+
 export default {
   metaInfo: {
     title: 'Schema'
+  },
+  components: {
+    Heading,
+    Card
+  },
+  data() {
+    return {
+      ...Schema
+    }
   }
 }
 </script>
