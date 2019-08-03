@@ -19,10 +19,10 @@
       :class="visible ? 'collapsed' : null"
       :aria-expanded="visible ? 'true' : 'false'"
       aria-controls="collapse-4"
-      @click="visible = !visible"
+      @click="changeVisible"
     >
       <div
-        v-for="(value, key) in fields[data.type]"
+        v-for="(value, key) in fields[data.type.toLowerCase()]"
         :key="key"
         class="card-item"
       >
@@ -43,18 +43,18 @@
       <div class="card-body">
         <!-- Wrapper for Component -->
         <CardComponent
-          v-if="data.format === 'component'"
-          :content="data"
+          v-if="data.type.toLowerCase() === 'components'"
+          :data="data"
         />
         <!-- Wrapper for Markdown -->
         <CardMarkdown
-          v-if="data.format === 'markdown'"
-          :content="data.content"
+          v-if="data.type.toLowerCase() === 'documents'"
+          :data="data"
         />
         <!-- Wrapper for Repl -->
         <CardRepl
-          v-if="data.format === 'repl'"
-          :content="data"
+          v-if="data.type.toLowerCase() === 'routes'"
+          :data="data"
         />
       </div>
     </b-collapse>
@@ -90,17 +90,31 @@ export default {
       visible: false,
       full: false,
       fields: {
-        document: {
-          name: "Document",
-          format: "Type"
+        documents: {
+          name: 'Document',
+          type: 'Type'
+        },
+        routes: {
+          name: 'Name',
+          type: 'Type',
+          method: 'Method',
+          path: 'Path'
         }
       }
     }
   },
   methods: {
+    changeVisible() {
+      if (!this.full) {
+        this.visible = !this.visible
+      }
+    },
     changeSize() {
       this.full = !this.full
-      this.visible = !this.visible
+
+      if (this.full) {
+        this.visible = true
+      }
     }
   }
 }

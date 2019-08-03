@@ -13,9 +13,9 @@
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav class="ml-auto">
             <b-nav-item to="/">Home</b-nav-item>
-            <b-nav-item to="/documents">Documents</b-nav-item>
-            <b-nav-item to="/components">Components</b-nav-item>
-            <b-nav-item to="/routes">Routes</b-nav-item>
+            <b-nav-item v-if="documentsEnable" to="/documents">Documents</b-nav-item>
+            <b-nav-item v-if="componentsEnable" to="/components">Components</b-nav-item>
+            <b-nav-item v-if="routesEnable" to="/routes">Routes</b-nav-item>
             <b-nav-item to="/about">About</b-nav-item>
             <b-form-checkbox v-model="checked" name="check-button" switch>
               {{ checked ? 'Dark Mode' : 'Light Mode' }}
@@ -39,10 +39,30 @@ query {
 </static-query>
 
 <script>
+import Components from '@/data/components.json'
+import Documents from '@/data/documents.json'
+import Routes from '@/data/routes.json'
+
 export default {
   data() {
     return {
-      checked: false
+      checked: false,
+      documentsEnable: false,
+      componentsEnable: false,
+      routesEnable: false
+    }
+  },
+  mounted() {
+    if (Components.components.length > 0) {
+      this.componentsEnable = true
+    }
+
+    if (Documents.documents.length > 0) {
+      this.documentsEnable = true
+    }
+
+    if (Routes.routes.length > 0) {
+      this.routesEnable = true
     }
   }
 }
