@@ -1,6 +1,10 @@
 {
-  "name": "laboon",
+  "name": "@laboon/monorepo",
   "version": "2.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "description": "🐋 The next generation REST APIs Documentation",
   "main": "index.js",
   "repository": {
