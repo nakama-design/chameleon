@@ -1,14 +1,36 @@
 <template>
   <Layout>
-    <h1>Documents</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error doloremque omnis animi, eligendi magni a voluptatum, vitae, consequuntur rerum illum odit fugit assumenda rem dolores inventore iste reprehenderit maxime! Iusto.</p>
+    <Heading
+      title="Documents"
+    />
+    <div role="tablist">
+      <Card
+        index="1"
+      />
+      <Card
+        index="2"
+      />
+    </div>
   </Layout>
 </template>
 
 <script>
+import Documents from '@/data/documents.json'
+import Heading from '@/components/Heading.vue'
+import Card from '@/components/Card.vue'
+
 export default {
   metaInfo: {
     title: 'Documents'
+  },
+  components: {
+    Heading,
+    Card
+  },
+  data() {
+    return {
+      Documents
+    }
   }
 }
 </script>

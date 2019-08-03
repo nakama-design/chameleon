@@ -1,0 +1,18 @@
+$white : #FFFFFF;
+$grey : #BFC3C5;
+$blue : #6687DE;
+$violet: #6687DE;
+$dark-grey : #676A6B;
+$dark-mode: #090C26;
+$dark-mode-border: #090C26;
+
+@mixin font-quicksands-medium {
+  font-family: Quicksand;
+  font-style: normal;
+  font-weight: 500;
+}
+@mixin font-quicksands-bold {
+  font-family: Quicksand;
+  font-style: normal;
+  font-weight: 700;
+}
