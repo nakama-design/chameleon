@@ -1,34 +1,44 @@
-# Meet 🍃 Chameleon — WIP
+# Meet 🍃 Laboon — WIP
 
-The next generation REST APIs Documentation, with simple configuration, cross language and framework. Just write one config and **chameleon** comments on your REST APIs project.
+The next generation REST APIs Documentation, with simple configuration, cross language and framework. Just write one config and **laboon** comments on your REST APIs project.
 
-### Single Command
+### Command
 
 Generate APIs documentation only using this command :
 
 ```bash
-$ npx chame generate
+$ npx laboon --help
+
+🍃 The next generation REST APIs Documentation
+
+Usage
+  $ laboon <input>
+
+Options
+  --format, -f  Include a format
+  --exclude, -e  Include a exclude
+  --source, -s  Include a source
+  --destination, -d  Include a destination
+  --host, -h  Include a host
+  --port, -p  Include a port
+
+Examples
+  $ laboon -f vue -f md -e node_modules -s src -d docs -h 0.0.0.0 -p 3456
 ```
 
 > Note : The command above, just for documentation. This project currently on development, so don't use it until release.
 
-### Preview v1.0
-
-On development version [Demo](https://nakama-design.github.io/chameleon/template).
-
-![Preview](chameleon.png)
-
 ### Usage
 
-First of all, create **chameleon.yml** on your REST APIs project. With content like code below :
+First of all, create **laboon.yml** on your REST APIs project. With content like code below :
 
 ```yaml
-# chameleon.yml
+# laboon.yml
 
-name: Chameleon                   # Project Name
+name: Laboon                      # Project Name
 endpoint: https://somedomain.com  # Domain name / IP for API endpoint 
 path: /api/v1                     # Route Group from APIs
-source: src                       # Source directory to be generate by chameleon
+source: src                       # Source directory to be generate by laboon
 destination: docs                 # Destination folder (default: docs)
 ```
 
@@ -47,7 +57,7 @@ use App\Http\Controllers\Controller;
 class UserController extends Controller
 {
   /**
-   * @chameleon
+   * @laboon
    * 
    * @name        : Show User
    * @description : Show the profile for the given user.
@@ -70,7 +80,7 @@ class UserController extends Controller
 Last, run this command on your root project :
 
 ```bash
-$ npx chame generate
+$ npx laboon
 ```
 
 > Note : This project under development, so don't use for production it after release. Except, you want to try this development version.
