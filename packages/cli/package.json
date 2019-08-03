@@ -1,13 +1,7 @@
 {
   "name": "@laboon/cli",
-  "version": "1.0.0-dev",
+  "version": "1.2.0-dev",
   "description": "🐋 The next generation REST APIs Documentation",
-  "engines": {
-    "node": ">=8"
-  },
-  "bin": {
-    "laboon": "index.js"
-  },
   "publishConfig": {
     "access": "public"
   },
@@ -15,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "execa": "^2.0.3",
     "fast-glob": "^3.0.4",
     "meow": "^5.0.0",
     "sander": "^0.6.0",

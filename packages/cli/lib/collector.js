@@ -59,7 +59,7 @@ module.exports = async flags => {
   );
 
   // Loop all files and get the content
-  Promise.all(
+  return Promise.all(
     globResult.map(async file => {
       let result = null;
 
@@ -71,7 +71,9 @@ module.exports = async flags => {
 
         if (comments.length > 0) {
           const attributes = comments[0].match(FLAG_ATTRIBUTES);
-          const brackets = {};
+          const brackets = {
+            path: file
+          };
 
           switch (format) {
             case "js":
@@ -169,14 +171,20 @@ module.exports = async flags => {
         await sander.mkdir(".laboon");
       }
 
-      await sander.writeFile(
-        ".laboon",
-        "data.json",
-        JSON.stringify(RESULTS, false, 2)
-      );
+      Object.keys(RESULTS).map(async type => {
+        await sander.writeFile(
+          ".laboon",
+          `${type}.json`,
+          JSON.stringify({[type]: RESULTS[type]}, false, 2)
+        );
+      })
 
       log.log("Generate content finished");
-      process.exit(0);
+
+      return {
+        project: project,
+        laboon: `${project}/.laboon`
+      }
     }
   });
 };

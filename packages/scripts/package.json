@@ -1,15 +1,24 @@
 {
   "name": "laboon",
-  "version": "1.0.2-dev",
+  "version": "1.2.0-dev",
   "description": "🐋 The next generation REST APIs Documentation",
+  "main": "index.js",
+  "engines": {
+    "node": ">=8"
+  },
+  "bin": {
+    "laboon": "index.js"
+  },
   "publishConfig": {
     "access": "public"
   },
-  "main": "index.js",
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@laboon/cli": "^1.0.0-dev"
+    "@laboon/cli": "^1.2.0-dev",
+    "@laboon/template": "^1.1.0-dev",
+    "sander": "^0.6.0",
+    "shelljs": "^0.8.3"
   }
 }
