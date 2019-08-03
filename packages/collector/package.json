@@ -1,7 +1,7 @@
 {
   "name": "@laboon/collector",
   "version": "2.0.0",
-  "description": "🍃 The next generation REST APIs Documentation",
+  "description": "🐋 The next generation REST APIs Documentation",
   "engines": {
     "node": ">=8"
   },

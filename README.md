@@ -1,4 +1,4 @@
-# Meet 🍃 Laboon — WIP
+# Meet 🐋 Laboon — WIP
 
 The next generation REST APIs Documentation, with simple configuration, cross language and framework. Just write one config and **laboon** comments on your REST APIs project.
 
@@ -9,7 +9,7 @@ Generate APIs documentation only using this command :
 ```bash
 $ npx laboon --help
 
-🍃 The next generation REST APIs Documentation
+🐋 The next generation REST APIs Documentation
 
 Usage
   $ laboon <input>
