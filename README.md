@@ -4,10 +4,18 @@ The next generation REST APIs Documentation, with simple configuration, cross la
 
 ### Command
 
+Install **laboon** with :
+
+```
+$ npm install -g @laboon/cli
+# or
+$ yarn global add @laboon/cli
+```
+
 Generate APIs documentation only using this command :
 
 ```bash
-$ npx laboon --help
+$ laboon --help
 
 🐋 The next generation REST APIs Documentation
 
@@ -80,7 +88,7 @@ class UserController extends Controller
 Last, run this command on your root project :
 
 ```bash
-$ npx laboon
+$ laboon
 ```
 
 > Note : This project under development, so don't use for production it after release. Except, you want to try this development version.
