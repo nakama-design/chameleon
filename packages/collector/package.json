@@ -1,0 +1,21 @@
+{
+  "name": "@laboon/collector",
+  "version": "2.0.0",
+  "description": "🍃 The next generation REST APIs Documentation",
+  "engines": {
+    "node": ">=8"
+  },
+  "bin": {
+    "laboon": "index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "execa": "^2.0.3",
+    "fast-glob": "^3.0.4",
+    "meow": "^5.0.0",
+    "sander": "^0.6.0",
+    "signale": "^1.4.0"
+  }
+}

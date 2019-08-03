@@ -1,5 +1,5 @@
 {
-  "name": "template",
+  "name": "@laboon/template",
   "private": true,
   "scripts": {
     "build": "gridsome build",

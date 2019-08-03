@@ -1,54 +1,16 @@
 {
-  "name": "chame",
-  "version": "1.0.0",
+  "name": "laboon",
+  "version": "2.0.0",
   "description": "🍃 The next generation REST APIs Documentation",
   "main": "index.js",
-  "engines": {
-    "node": ">=8"
-  },
-  "bin": {
-    "chame": "./bin/chameleon"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nakama-design/chameleon.git"
-  },
-  "scripts": {
-    "sass": "sass template/scss/main.scss template/css/main.min.css --style compressed --watch",
-    "start": "babel template/js/main.js  --watch --out-file template/js/main.min.js",
-    "build": "minify template/js/main.min.js -d template/js/"
+    "url": "git+https://github.com/laboon-docs/laboon.git"
   },
   "author": "Muhibbudin Suretno <muhibbudinsuretno1@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nakama-design/chameleon/issues"
+    "url": "https://github.com/laboon-docs/laboon/issues"
   },
-  "homepage": "https://github.com/nakama-design/chameleon#readme",
-  "dependencies": {
-    "chalk": "^2.4.1",
-    "chokidar": "^2.0.4",
-    "commander": "^2.18.0",
-    "express": "^4.16.3",
-    "fs-extra": "^7.0.0",
-    "gh-pages": "^2.0.1",
-    "glob": "^7.1.3",
-    "log-timestamp": "^0.2.1",
-    "markdown": "^0.5.0",
-    "node-sass": "^4.9.3",
-    "pretty": "^2.0.0",
-    "read-yaml": "^1.1.0",
-    "reload": "^2.3.1",
-    "template7": "^1.4.0",
-    "unescape": "^1.0.1"
-  },
-  "devDependencies": {
-    "@babel/plugin-transform-regenerator": "^7.0.0",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-minify": "^0.5.0",
-    "babel-plugin-transform-es2015-template-literals": "^6.22.0",
-    "babel-polyfill": "^6.0.16",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-stage-0": "^6.0.15"
-  }
+  "homepage": "https://github.com/laboon-docs/laboon#readme"
 }
