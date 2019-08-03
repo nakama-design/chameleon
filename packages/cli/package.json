@@ -1,6 +1,6 @@
 {
-  "name": "@laboon/collector",
-  "version": "2.0.0",
+  "name": "@laboon/cli",
+  "version": "1.0.0-dev",
   "description": "🐋 The next generation REST APIs Documentation",
   "engines": {
     "node": ">=8"
