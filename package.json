@@ -11,6 +11,9 @@
     "type": "git",
     "url": "git+https://github.com/laboon-docs/laboon.git"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Muhibbudin Suretno <muhibbudinsuretno1@gmail.com>",
   "license": "MIT",
   "bugs": {

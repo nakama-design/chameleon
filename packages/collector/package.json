@@ -8,6 +8,9 @@
   "bin": {
     "laboon": "index.js"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
