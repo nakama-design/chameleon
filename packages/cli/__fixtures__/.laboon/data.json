@@ -1,9 +1,17 @@
 {
   "documents": [
     {
-      "content": "# Foo bar\n\nlorem ipsum dolor sit amet",
+      "plain": "# Foo bar\n\nlorem ipsum dolor sit amet\n\n[flow]\n  graph TD;\n    A-->B;\n    A-->C;\n    B-->D;\n    C-->D;\n[/flow]\n\n[sequence]\n  sequenceDiagram\n    participant Alice\n    participant Bob\n    Alice->>John: Hello John, how are you?\n    loop Healthcheck\n      John->>John: Fight against hypochondria\n    end\n    Note right of John: Rational thoughts <br/>prevail!\n    John-->>Alice: Great!\n    John->>Bob: How about you?\n    Bob-->>John: Jolly good!\n[/sequence]\n\n[gantt]\n  gantt\n  dateFormat  YYYY-MM-DD\n  title Adding GANTT diagram to mermaid\n  excludes weekdays 2014-01-10\n\n  section A section\n  Completed task            :done,    des1, 2014-01-06,2014-01-08\n  Active task               :active,  des2, 2014-01-09, 3d\n  Future task               :         des3, after des2, 5d\n  Future task2               :         des4, after des3, 5d\n[/gantt]\n\n[class]\n  classDiagram\n  Class01 <|-- AveryLongClass : Cool\n  Class03 *-- Class04\n  Class05 o-- Class06\n  Class07 .. Class08\n  Class09 --> C2 : Where am i?\n  Class09 --* C3\n  Class09 --|> Class07\n  Class07 : equals()\n  Class07 : Object[] elementData\n  Class01 : size()\n  Class01 : int chimp\n  Class01 : int gorilla\n  Class08 <--> C2: Cool label\n[/class]\n\n[git]\n  gitGraph:\n    options\n    {\n        \"nodeSpacing\": 150,\n        \"nodeRadius\": 10\n    }\n    end\n    commit\n    branch newbranch\n    checkout newbranch\n    commit\n    commit\n    checkout master\n    commit\n    commit\n    merge newbranch\n[/git]",
+      "schema": {
+        "_u2nc1pcof": "graph TD;\n    A-->B;\n    A-->C;\n    B-->D;\n    C-->D;",
+        "_tbthrdne5": "sequenceDiagram\n    participant Alice\n    participant Bob\n    Alice->>John: Hello John, how are you?\n    loop Healthcheck\n      John->>John: Fight against hypochondria\n    end\n    Note right of John: Rational thoughts <br/>prevail!\n    John-->>Alice: Great!\n    John->>Bob: How about you?\n    Bob-->>John: Jolly good!",
+        "_5sw40fgsg": "gantt\n  dateFormat  YYYY-MM-DD\n  title Adding GANTT diagram to mermaid\n  excludes weekdays 2014-01-10\n\n  section A section\n  Completed task            :done,    des1, 2014-01-06,2014-01-08\n  Active task               :active,  des2, 2014-01-09, 3d\n  Future task               :         des3, after des2, 5d\n  Future task2               :         des4, after des3, 5d",
+        "_yx6ikztkg": "classDiagram\n  Class01 <|-- AveryLongClass : Cool\n  Class03 *-- Class04\n  Class05 o-- Class06\n  Class07 .. Class08\n  Class09 --> C2 : Where am i?\n  Class09 --* C3\n  Class09 --|> Class07\n  Class07 : equals()\n  Class07 : Object[] elementData\n  Class01 : size()\n  Class01 : int chimp\n  Class01 : int gorilla\n  Class08 <--> C2: Cool label",
+        "_4k0ybo4gb": "gitGraph:\n    options\n    {\n        \"nodeSpacing\": 150,\n        \"nodeRadius\": 10\n    }\n    end\n    commit\n    branch newbranch\n    checkout newbranch\n    commit\n    commit\n    checkout master\n    commit\n    commit\n    merge newbranch"
+      },
+      "content": "# Foo bar\n\nlorem ipsum dolor sit amet\n\n<div id=\"_u2nc1pcof\"></div>\n\n<div id=\"_tbthrdne5\"></div>\n\n<div id=\"_5sw40fgsg\"></div>\n\n<div id=\"_yx6ikztkg\"></div>\n\n<div id=\"_4k0ybo4gb\"></div>",
       "name": "Example Document",
-      "type": "Documents"
+      "type": "Schema"
     }
   ],
   "schema": [],

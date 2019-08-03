@@ -10,12 +10,17 @@ const FLAG_NEWLINE = /\n/g;
 const FLAG_COMMENTS = /(\/\*|\-{4})(.|[\r\n])*?(\*\/|\-{4})/gm;
 const FLAG_ATTRIBUTES = /\@.*(?=\{)(.|[\r\n])*?\}|(\@.+|^\w.+\:.+)/gm;
 const FLAG_SUB_ATTRIBUTES = /\@([^\s]+)\s(.*)/;
+const FLAG_SCHEMA = /\[(flow|sequence|gantt|class|git)\]((.|[\r\n])*?)\[\/(flow|sequence|gantt|class|git)\]/gm
 const RESULTS = {
   documents: [],
   schema: [],
   components: [],
   routes: []
 };
+
+const uniqueId = () => {
+  return '_' + Math.random().toString(36).substr(2, 9)
+}
 
 module.exports = async flags => {
   // Logging
@@ -118,6 +123,15 @@ module.exports = async flags => {
               break;
 
             case "md":
+              const schema = {}
+              const plain = content.replace(FLAG_COMMENTS, "").trim()
+              const replaced = plain.replace(FLAG_SCHEMA, (match, contents, offset, input_string) => {
+                const currentId = uniqueId()
+                schema[currentId] = offset.trim()
+
+                return `<div id="${currentId}" class="mermaid-chart"></div>`
+              })
+
               attributes.map(attr => {
                 const [key, value] = attr.split(":");
 
@@ -125,7 +139,9 @@ module.exports = async flags => {
               });
 
               RESULTS["documents"].push({
-                content: content.replace(FLAG_COMMENTS, "").trim(),
+                plain: plain,
+                schema: schema,
+                content: replaced,
                 ...brackets
               });
 
