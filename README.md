@@ -41,6 +41,8 @@ Examples
 | Light Mode | Dark Mode |
 |:---:|:---:|
 |![Light Mode](./assets/light-mode.png)|![Dark Mode](./assets/dark-mode.png)|
+
+
 | Graph Preview |
 |:---:|
 |![Graph Preview](./assets/graph-mode.png)|
