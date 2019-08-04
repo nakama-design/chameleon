@@ -1,7 +1,9 @@
 const collector = __dirname;
 const project = process.cwd();
 
+const path = require("path");
 const glob = require("fast-glob");
+const yaml = require("read-yaml-promise");
 const sander = require("sander");
 const { log } = require("./utils");
 const package = require("../package.json");
@@ -21,39 +23,74 @@ const uniqueId = () => {
   return '_' + Math.random().toString(36).substr(2, 9)
 }
 
+const merge = (target, source) => {
+  return new Promise(resolve => {
+    let answer = {}
+
+    for(key in target) {
+      if(answer[key] === undefined || answer[key] === null)
+        answer[key] = target[key];
+    }
+
+    for(key in source) {
+      if(answer[key] === undefined || answer[key] === null)
+        answer[key] = source[key];
+    }
+
+    resolve(answer)
+  })
+}
+
 module.exports = async flags => {
   // Logging
   log.log(`Starting Laboon ${package.version}`);
 
   // Check existing laboon.yml
-  const laboon = await sander.exists(project, ".laboon.yml");
+  const laboon = await sander.exists(project, "laboon.yml");
 
   // Set default configuration
-  const config = {
+  let config = {
     format: ["md", "js", "vue"],
     exclude: ["node_modules"],
-    source: "src",
-    destination: "docs",
+    source: '**',
+    destination: ".laboon",
     host: "0.0.0.0",
     port: "3456"
   };
 
   if (laboon) {
-    // parse yaml and replace current config
+    const laboonConfig = await yaml(path.join(project, 'laboon.yml'))
+
+    config = await merge(laboonConfig, config)
   }
 
   if (flags) {
-    // replace current config with flags
+    config = await merge(flags, config)
   }
 
   // Create glob pattern
-  const globPattern = config.format.map(format => {
-    return `**/*.${format}`;
+  let globExclude = ''
+  const globPattern = []
+
+  config.format.map(format => {
+    if (Array.isArray(config.source)) {
+      config.source.map(directory => {
+        globPattern.push(`${directory}/**/*.${format}`);
+      })
+    } else {
+      globPattern.push(`${config.source}/**/*.${format}`);
+    }
+
+    return globPattern
   });
 
-  const globExclude = config.exclude.map(format => {
-    return `**/${format}/**`;
-  });
+  if (Array.isArray(config.exclude)) {
+    globExclude = config.exclude.map(format => {
+      return `**/${format}/**`;
+    });
+  } else {
+    globExclude = `**/${config.exclude}/**`;
+  }
 
   // Glob possible files with pattern & ignore
   const globResult = await glob(globPattern, { ignore: globExclude });
@@ -175,13 +212,13 @@ module.exports = async flags => {
 
     // Found a contents and ready to generate
     else {
-      if (await !sander.exists(".laboon")) {
-        await sander.mkdir(".laboon");
+      if (await !sander.exists(config.destination)) {
+        await sander.mkdir(config.destination);
       }
 
       Object.keys(RESULTS).map(async type => {
         await sander.writeFile(
-          ".laboon",
+          config.destination,
           `${type}.json`,
           JSON.stringify({[type]: RESULTS[type]}, false, 2)
         );
@@ -191,7 +228,8 @@ module.exports = async flags => {
 
       return {
         project: project,
-        laboon: `${project}/.laboon`
+        laboon: `${project}/${config.destination}`,
+        config: config
       }
     }
   });

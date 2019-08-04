@@ -1,2 +1,4 @@
-__fixtures__/.laboon
+node_modules
 temp
+__fixtures__
+package-lock.json

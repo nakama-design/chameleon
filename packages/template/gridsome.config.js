@@ -11,11 +11,11 @@ function addStyleResource (rule) {
 }
 
 module.exports = {
-  siteName: 'Laboon',
+  // laboon-config
   plugins: [],
   chainWebpack (config) {
     ['vue-modules', 'vue', 'normal-modules', 'normal'].forEach(type => {
       addStyleResource(config.module.rule('scss').oneOf(type))
     })
-	}
+  }
 }

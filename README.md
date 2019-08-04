@@ -36,6 +36,15 @@ Examples
 
 > Note : The command above, just for documentation. This project currently on development, so don't use it until release.
 
+### Preview
+
+| Light Mode | Dark Mode |
+|:---:|:---:|
+|![Light Mode](./assets/light-mode.png)|![Dark Mode](./assets/dark-mode.png)|
+| Graph Preview |
+|:---:|
+|![Graph Preview](./assets/graph-mode.png)|
+
 ### Usage
 
 First of all, create **laboon.yml** on your REST APIs project. With content like code below :

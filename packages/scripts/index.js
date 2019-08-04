@@ -10,6 +10,7 @@ const { log } = require('@laboon/cli/lib/utils')
 
 const SOURCE_PATH = path.join(__dirname, 'node_modules', '@laboon', 'template')
 const TARGET_PATH = path.join(__dirname, 'temp')
+const CONFIG_PATH = path.join(TARGET_PATH, 'gridsome.config.js')
 const DATA_PATH = path.join(TARGET_PATH, 'src', 'data')
 const DIST_PATH = path.join(TARGET_PATH, 'dist')
 
@@ -69,11 +70,35 @@ if (cli.input[0] && cli.input[0] === 'clean') {
 	return
 }
 
-collector(cli.flags).then(async ({ laboon }) => {
+collector(cli.flags).then(async ({ laboon, config }) => {
 	log.log('Copying interface template')
 
 	await sander.copydir(SOURCE_PATH).to(TARGET_PATH)
 	await sander.copydir(laboon).to(DATA_PATH)
+
+	const configSource = await sander.readFile(CONFIG_PATH, { encoding: 'utf-8' })
+	const configDefault = [
+		`siteName: 'Laboon Docs'`
+	]
+	
+	;[
+		'siteName',
+		'siteDescription',
+		'siteUrl',
+		'pathPrefix',
+		'host',
+		'port'
+	].map(item => {
+		if (config[item]) {
+			configDefault.push(
+				`${item}: '${config[item]}'`
+			)
+		}
+	})
+
+	const configTarget = configSource.replace('// laboon-config', configDefault.join(',\n') + ',')
+
+	await sander.writeFile(CONFIG_PATH, configTarget)
 
 	try {
 		

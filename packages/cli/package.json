@@ -1,6 +1,6 @@
 {
   "name": "@laboon/cli",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "🐋 The next generation REST APIs Documentation",
   "publishConfig": {
     "access": "public"
@@ -11,6 +11,7 @@
   "dependencies": {
     "fast-glob": "^3.0.4",
     "meow": "^5.0.0",
+    "read-yaml-promise": "^1.0.2",
     "sander": "^0.6.0",
     "signale": "^1.4.0"
   }

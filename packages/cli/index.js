@@ -31,7 +31,7 @@ const cli = meow(`
 			alias: 'e'
 		},
 		source: {
-			type: 'string',
+			type: 'array',
 			alias: 's'
 		},
 		destination: {
