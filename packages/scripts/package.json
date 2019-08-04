@@ -1,6 +1,6 @@
 {
   "name": "laboon",
-  "version": "1.5.0-dev",
+  "version": "1.5.1-dev",
   "description": "🐋 The next generation REST APIs Documentation",
   "main": "index.js",
   "engines": {
@@ -16,7 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@laboon/cli": "^1.0.1",
+    "@laboon/cli": "^1.0.2",
     "@laboon/template": "^1.2.0",
     "rimraf": "^2.6.3",
     "sander": "^0.6.0",

@@ -30,7 +30,7 @@ module.exports = async flags => {
 
   // Set default configuration
   const config = {
-    format: ["md", "js"],
+    format: ["md", "js", "vue"],
     exclude: ["node_modules"],
     source: "src",
     destination: "docs",
@@ -51,8 +51,12 @@ module.exports = async flags => {
     return `**/*.${format}`;
   });
 
+  const globExclude = config.exclude.map(format => {
+    return `**/${format}/**`;
+  });
+
   // Glob possible files with pattern & ignore
-  const globResult = await glob(globPattern, { ignore: config.exclude });
+  const globResult = await glob(globPattern, { ignore: globExclude });
 
   log.log(
     `Founds ${globResult.length} file with format ${config.format.join(", ")}`
@@ -74,6 +78,10 @@ module.exports = async flags => {
           const brackets = {
             path: file
           };
+
+          if (!attributes) {
+            return
+          }
 
           switch (format) {
             case "js":

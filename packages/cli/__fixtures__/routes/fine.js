@@ -1,4 +1,4 @@
-class Sample {
+class Fine {
 
   /**
    * @name Example API
@@ -9,7 +9,7 @@ class Sample {
    *   email : String Required Null
    * }
    */
-  sample() {
-    return 'sample'
+  Fine() {
+    return 'Fine'
   }
 }
