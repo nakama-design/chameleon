@@ -4,14 +4,14 @@
   "workspaces": [
     "packages/*"
   ],
-  "description": "🐋 The next generation REST APIs Documentation",
+  "description": "🐋 Modern documentation generator for your application",
   "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/laboon-docs/laboon.git"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "author": "Muhibbudin Suretno <muhibbudinsuretno1@gmail.com>",
   "license": "MIT",

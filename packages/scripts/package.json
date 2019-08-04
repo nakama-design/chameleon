@@ -1,7 +1,7 @@
 {
   "name": "laboon",
   "version": "1.5.1-dev",
-  "description": "🐋 The next generation REST APIs Documentation",
+  "description": "🐋 Modern documentation generator for your application",
   "main": "index.js",
   "engines": {
     "node": ">=8"
@@ -12,9 +12,17 @@
   "publishConfig": {
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laboon-docs/laboon.git"
+  },
+  "author": "Muhibbudin Suretno <muhibbudinsuretno1@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/laboon-docs/laboon/issues"
+  },
+  "homepage": "https://github.com/laboon-docs/laboon#readme",
   "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@laboon/cli": "^1.1.0",
     "@laboon/template": "^1.2.0",

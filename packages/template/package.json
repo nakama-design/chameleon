@@ -4,6 +4,16 @@
   "publishConfig": {
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laboon-docs/laboon.git"
+  },
+  "author": "Muhibbudin Suretno <muhibbudinsuretno1@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/laboon-docs/laboon/issues"
+  },
+  "homepage": "https://github.com/laboon-docs/laboon#readme",
   "scripts": {
     "build": "gridsome build",
     "develop": "gridsome develop",

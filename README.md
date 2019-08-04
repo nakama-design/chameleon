@@ -1,69 +1,90 @@
-# Meet 🐋 Laboon — WIP
+# Meet 🐋 Laboon
 
-The next generation REST APIs Documentation, with simple configuration, cross language and framework. Just write one config and **laboon** comments on your REST APIs project.
+Laboon are *modern documentation generator* for your application, with simple configuration. That can generate beautiful and simple documentation from your JavaScript, TypeScript, Markdown or even Vue Component. With block comments `/**...*/` annotation you can describe the function / docs and Laboon will generate a user interface for you.
 
-### Command
+> Laboon is the name of large whale in the anime Straw Hat Pirates [detail](https://onepiece.fandom.com/wiki/Laboon)
+
+## Preview
+
+| Light Mode |
+|:---:|
+|![Light Mode](./assets/light-mode.png)|
+| Dark Mode |
+| ![Dark Mode](./assets/dark-mode.png)|
+| Graph Preview |
+|![Graph Preview](./assets/graph-mode.png)|
+
+## Usage
+
+### Install
 
 Install **laboon** with :
 
 ```
-$ npm install -g @laboon/cli
+$ npm install -g laboon
 # or
-$ yarn global add @laboon/cli
+$ yarn global add laboon
 ```
 
-Generate APIs documentation only using this command :
+Show any options and format using **laboon --help**
 
 ```bash
 $ laboon --help
 
-🐋 The next generation REST APIs Documentation
+🐋 Modern documentation generator for your application
 
 Usage
   $ laboon <input>
 
+Commands
+  clean                   Removing cache on generator
+
 Options
-  --format, -f  Include a format
-  --exclude, -e  Include a exclude
-  --source, -s  Include a source
-  --destination, -d  Include a destination
-  --host, -h  Include a host
-  --port, -p  Include a port
+    --format, -f          File format to compile
+    --exclude, -e         Excluding file / folders
+    --source, -s          Source directory to generate (optional)
+    --destination, -d     Destination folder of docs (default .laboon)
+    --host, -h            Host of development preview
+    --port, -p            Port of development preview
+    --siteName, -S        Set site name for Gridsome
+    --siteDescription, -D Set site description for Gridsome
+    --siteUrl, -U         Set site url for Gridsome
+    --pathPrefix, -P      Set path prefix for Gridsome
 
 Examples
-  $ laboon -f vue -f md -e node_modules -s src -d docs -h 0.0.0.0 -p 3456
+  $ laboon -f vue -f md -e node_modules -s src -d docs
 ```
 
-> Note : The command above, just for documentation. This project currently on development, so don't use it until release.
+### Start Laboon
 
-### Preview
+Last, run this command :
 
-| Light Mode | Dark Mode |
-|:---:|:---:|
-|![Light Mode](./assets/light-mode.png)|![Dark Mode](./assets/dark-mode.png)|
+```bash
+$ laboon
+```
 
+### Configure
 
-| Graph Preview |
-|:---:|
-|![Graph Preview](./assets/graph-mode.png)|
-
-### Usage
-
-First of all, create **laboon.yml** on your REST APIs project. With content like code below :
+First of all, create **laboon.yml** on your project. With content like code below :
 
 ```yaml
 # laboon.yml
 
-name: Laboon                      # Project Name
-endpoint: https://somedomain.com  # Domain name / IP for API endpoint 
-path: /api/v1                     # Route Group from APIs
-source: src                       # Source directory to be generate by laboon
-destination: docs                 # Destination folder (default: docs)
+format: format # format
+exclude: exclude # exclude
+source: source # source
+destination: destination # destination
+siteName: siteName # siteName
+siteDescription: siteDescription # siteDescription
+siteUrl: siteUrl # siteUrl
+pathPrefix: pathPrefix # pathPrefix
+host: host # host
+port: port # port
 ```
 
 > You can use separate folder for destination, eg. **public/docs**
 
-Next, create block comment on your documented method. Like example below :
+Next, create block comment on your documented method or variable. Like below example inside PHP file :
 
 ```php
 <?php
@@ -76,17 +97,12 @@ use App\Http\Controllers\Controller;
 class UserController extends Controller
 {
   /**
-   * @laboon
-   * 
-   * @name        : Show User
-   * @description : Show the profile for the given user.
-   * @route       : /user
-   * @method      : GET
-   * @parameter   : {
-   *  id : Integer
-   * }
-   * @response    : {
-   *  view     : HTML
+   * @name Example API PHP
+   * @type Routes
+   * @method GET
+   * @parameters {
+   *   username : String Required Null
+   *   email : String Required Null
    * }
    */
   public function show($id)
@@ -96,14 +112,91 @@ class UserController extends Controller
 }
 ```
 
-Last, run this command on your root project :
+Markdown file :
 
-```bash
-$ laboon
+```markdown
+----
+name : Example Document
+type : Documents
+----
+
+# Hello World
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis natus dolore quo iste! Quibusdam quisquam laborum quos eligendi natus, reiciendis praesentium delectus ducimus enim. Aspernatur dicta provident veniam aliquam obcaecati!
+
+### Example Flowchart
+
+[flow]
+  graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+[/flow]
+
+Debitis natus dolore quo iste! Quibusdam quisquam laborum quos eligendi natus, reiciendis praesentium delectus ducimus enim. Aspernatur dicta provident veniam aliquam obcaecati!
 ```
 
-> Note : This project under development, so don't use for production it after release. Except, you want to try this development version.
+JavaScript file :
 
-### License
+```js
+class User {
+
+  /**
+   * @name Example API Node.js
+   * @type Routes
+   * @method GET
+   * @parameters {
+   *   username : String Required Null
+   *   email : String Required Null
+   * }
+   */
+  index(req, res) {
+    res.json('name' => 'John Doe')
+  }
+}
+```
+
+Or, even your Vue Component file :
+
+```html
+<template>
+  <div>
+    <!-- Form header -->
+    <slot name="header">
+      <!-- `<th>title</th>` -->
+      <th>title</th>
+    </slot>
+  </div>
+</template>
+
+<script>
+// This is a description of the component
+export default {
+  name: 'MyComponent',
+  props: {
+    // The name of the form, up to 8 characters
+    name: {
+      type: [String, Number],
+      required: true,
+      validator () {}
+    }
+  },
+  methods: {
+    // @vuese
+    // Used to manually clear the form
+    clear () {
+      // Fire when the form is cleared
+      // @arg The argument is a boolean value representing xxx
+      this.$emit('onclear', true)
+    }
+  }
+}
+</script>
+```
+
+> For further information about documenting Vue file, please see [Vuese detail](https://vuese.org/cli/#motivation).
+
+## License
 
 This project under MIT License

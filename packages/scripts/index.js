@@ -19,18 +19,22 @@ const cli = meow(`
 	  $ laboon <input>
 
 	Commands
-	  clean              Removing cache on generator
+	  clean                  Removing cache on generator
 
 	Options
-	  --format, -f       File format to compile
-	  --exclude, -e      Excluding file / folders
-	  --source, -s       Source directory to generate (optional)
-	  --destination, -d  Destination folder of docs (default .laboon)
-	  --host, -h         Host of development preview
-	  --port, -p         Port of development preview
+    --format, -f          File format to compile
+    --exclude, -e         Excluding file / folders
+    --source, -s          Source directory to generate (optional)
+    --destination, -d     Destination folder of docs (default .laboon)
+    --host, -h            Host of development preview
+    --port, -p            Port of development preview
+    --siteName, -S        Set site name for Gridsome
+    --siteDescription, -D Set site description for Gridsome
+    --siteUrl, -U         Set site url for Gridsome
+    --pathPrefix, -P      Set path prefix for Gridsome
 
 	Examples
-	  $ laboon -f vue -f md -e node_modules -s src -d docs -h 0.0.0.0 -p 3456
+	  $ laboon -f vue -f md -e node_modules -s src -d docs
 `, {
 	flags: {
 		format: {
@@ -56,6 +60,22 @@ const cli = meow(`
 		port: {
 			type: 'number',
 			alias: 'p'
+		},
+		siteName: {
+			type: 'string',
+			alias: 'S'
+		},
+		siteDescription: {
+			type: 'string',
+			alias: 'D'
+		},
+		siteUrl: {
+			type: 'string',
+			alias: 'U'
+		},
+		pathPrefix: {
+			type: 'string',
+			alias: 'P'
 		}
 	}
 });

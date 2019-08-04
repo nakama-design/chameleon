@@ -1,13 +1,21 @@
 {
   "name": "@laboon/cli",
   "version": "1.1.0",
-  "description": "🐋 The next generation REST APIs Documentation",
+  "description": "🐋 Modern documentation generator for your application",
   "publishConfig": {
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laboon-docs/laboon.git"
+  },
+  "author": "Muhibbudin Suretno <muhibbudinsuretno1@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/laboon-docs/laboon/issues"
+  },
+  "homepage": "https://github.com/laboon-docs/laboon#readme",
   "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "fast-glob": "^3.0.4",
     "meow": "^5.0.0",
