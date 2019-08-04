@@ -1,0 +1,22 @@
+{
+  "routes": [
+    {
+      "path": "routes/api.js",
+      "name": "Example API",
+      "type": "Routes",
+      "method": "GET",
+      "parameters": {
+        "username": {
+          "type": "String",
+          "required": true,
+          "default": "Null"
+        },
+        "email": {
+          "type": "String",
+          "required": true,
+          "default": "Null"
+        }
+      }
+    }
+  ]
+}

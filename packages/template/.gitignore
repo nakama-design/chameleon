@@ -7,3 +7,4 @@ dist
 .env
 .env.*
 src/data/*.json
+package-lock.json

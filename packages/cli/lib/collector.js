@@ -1,10 +1,10 @@
 const collector = __dirname;
 const project = process.cwd();
 
-const execa = require("execa");
 const glob = require("fast-glob");
 const sander = require("sander");
 const { log } = require("./utils");
+const package = require("../package.json");
 
 const FLAG_NEWLINE = /\n/g;
 const FLAG_COMMENTS = /(\/\*|\-{4})(.|[\r\n])*?(\*\/|\-{4})/gm;
@@ -23,7 +23,7 @@ const uniqueId = () => {
 
 module.exports = async flags => {
   // Logging
-  log.log("Collecting detected files");
+  log.log(`Starting Laboon ${package.version}`);
 
   // Check existing laboon.yml
   const laboon = await sander.exists(project, ".laboon.yml");
@@ -179,7 +179,7 @@ module.exports = async flags => {
         );
       })
 
-      log.log("Generate content finished");
+      log.log("Generate JSON source finished");
 
       return {
         project: project,

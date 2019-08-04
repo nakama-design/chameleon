@@ -1,19 +1,22 @@
 #!/usr/bin/env node
 
 const meow = require('meow');
-const collector = require('./lib/collector')
+const collector = require('@laboon/cli/lib/collector')
 
 const cli = meow(`
 	Usage
 	  $ laboon <input>
 
+	Commands
+	  clean              Removing cache on generator
+
 	Options
-	  --format, -f  Include a format
-	  --exclude, -e  Include a exclude
-	  --source, -s  Include a source
-	  --destination, -d  Include a destination
-	  --host, -h  Include a host
-	  --port, -p  Include a port
+	  --format, -f       File format to compile
+	  --exclude, -e      Excluding file / folders
+	  --source, -s       Source directory to generate (optional)
+	  --destination, -d  Destination folder of docs (default .laboon)
+	  --host, -h         Host of development preview
+	  --port, -p         Port of development preview
 
 	Examples
 	  $ laboon -f vue -f md -e node_modules -s src -d docs -h 0.0.0.0 -p 3456

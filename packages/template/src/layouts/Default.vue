@@ -73,6 +73,7 @@ export default {
   article {
     min-height: 100vh;
     transition: all .3s ease-in-out;
+    padding-bottom: 40px;
   }
   .navbar {
     transition: all .3s ease-in-out;
