@@ -1,23 +1,31 @@
 <template>
   <Layout>
-    <Heading
-      title="Home"
-    />
-    <div>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga numquam architecto voluptas possimus in, illum ut. Est, reprehenderit ea. Magnam doloribus beatae dolore corporis tempora, accusantium sapiente quaerat consequatur sint.
+    <div class="row">
+      <div class="col-12">
+        <Card :data="{}" />
+      </div>
+      <div class="col-4">
+        <Card :data="{}" />
+      </div>
+      <div class="col-4">
+        <Card :data="{}" />
+      </div>
+      <div class="col-4">
+        <Card :data="{}" />
+      </div>
     </div>
   </Layout>
 </template>
 
 <script>
-import Heading from '@/components/Heading.vue'
+import Card from '@/components/CardChart.vue'
 
 export default {
   metaInfo: {
     title: 'Home'
   },
   components: {
-    Heading
+    Card
   }
 }
 </script>

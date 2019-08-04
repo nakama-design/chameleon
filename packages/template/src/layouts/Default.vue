@@ -13,18 +13,16 @@
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav class="ml-auto">
             <b-nav-item to="/">Home</b-nav-item>
-            <b-nav-item v-if="documentsEnable" to="/documents">Documents</b-nav-item>
-            <b-nav-item v-if="componentsEnable" to="/components">Components</b-nav-item>
-            <b-nav-item v-if="routesEnable" to="/routes">Routes</b-nav-item>
+            <b-nav-item v-if="documentsEnable" to="/list/documents">Documents</b-nav-item>
+            <b-nav-item v-if="componentsEnable" to="/list/components">Components</b-nav-item>
+            <b-nav-item v-if="routesEnable" to="/list/routes">Routes</b-nav-item>
             <b-nav-item to="/about">About</b-nav-item>
-            <b-form-checkbox v-model="checked" name="check-button" switch>
-              {{ checked ? 'Dark Mode' : 'Light Mode' }}
-            </b-form-checkbox>
+            <b-form-checkbox v-model="checked" name="check-button" switch />
           </b-navbar-nav>
         </b-collapse>
       </b-container>
     </b-navbar>
-    <b-container>
+    <b-container class="py-5">
       <slot/>
     </b-container>
   </article>
@@ -39,9 +37,7 @@ query {
 </static-query>
 
 <script>
-import Components from '@/data/components.json'
-import Documents from '@/data/documents.json'
-import Routes from '@/data/routes.json'
+import Laboon from '@/data/laboon.json'
 
 export default {
   data() {
@@ -53,15 +49,15 @@ export default {
     }
   },
   mounted() {
-    if (Components.components.length > 0) {
+    if (Laboon.components.length > 0) {
       this.componentsEnable = true
     }
 
-    if (Documents.documents.length > 0) {
+    if (Laboon.documents.length > 0) {
       this.documentsEnable = true
     }
 
-    if (Routes.routes.length > 0) {
+    if (Laboon.routes.length > 0) {
       this.routesEnable = true
     }
   }
@@ -92,10 +88,13 @@ export default {
       align-items: center;
       padding: 12px;
       padding-left: 48px;
+      padding-top: 0;
+      margin-top: -10px;
     }
   }
   .navbar-light .navbar-brand {
-    font-family: 'Lobster Two';
+    @include font-quicksands-medium;
+
     color: $purple;
     font-size: 28px;
   }

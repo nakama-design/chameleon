@@ -38,7 +38,9 @@ export default {
             const container = document.querySelector(`#${className}`)
 
             mermaid.render(`mermaid${className}`, this.data.schema[className], code => {
-              container.innerHTML = code
+              if (container) {
+                container.innerHTML = code
+              }
             })
           })
         }

@@ -24,7 +24,7 @@
   "homepage": "https://github.com/laboon-docs/laboon#readme",
   "keywords": [],
   "dependencies": {
-    "@laboon/cli": "^1.1.0",
+    "@laboon/cli": "^1.4.0",
     "@laboon/template": "^1.2.0",
     "rimraf": "^2.6.3",
     "sander": "^0.6.0",

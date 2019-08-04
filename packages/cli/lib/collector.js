@@ -111,6 +111,15 @@ module.exports = async flags => {
       const format = file.split(".").pop();
       const content = await sander.readFile(file, { encoding: "utf-8" });
 
+      const { size, ctimeMs, birthtimeMs } = await lstat(file)
+
+      const brackets = {
+        path: file,
+        size: size,
+        changed: ctimeMs,
+        created: birthtimeMs
+      };
+
       if (FLAG_COMMENTS.test(content)) {
         const comments = content.match(FLAG_COMMENTS);
 
@@ -120,15 +129,6 @@ module.exports = async flags => {
           if (!attributes) {
             return
           }
-
-          const { size, ctimeMs, birthtimeMs } = await lstat(file)
-
-          const brackets = {
-            path: file,
-            size: size,
-            changed: ctimeMs,
-            created: birthtimeMs
-          };
 
           switch (format) {
             case "js":
@@ -217,8 +217,10 @@ module.exports = async flags => {
 
           if (markdownRes !== null) {
             RESULTS["components"].push({
-              content: markdownRes,
-              ...parserRes
+              type: 'Components',
+              parser: parserRes,
+              ...markdownRes,
+              ...brackets
             });
     
             result = content;
@@ -247,13 +249,11 @@ module.exports = async flags => {
         await sander.mkdir(config.destination);
       }
 
-      Object.keys(RESULTS).map(async type => {
-        await sander.writeFile(
-          config.destination,
-          `${type}.json`,
-          JSON.stringify({[type]: RESULTS[type]}, false, 2)
-        );
-      })
+      await sander.writeFile(
+        config.destination,
+        'laboon.json',
+        JSON.stringify(RESULTS)
+      );
 
       log.log("Generate JSON source finished");
 
