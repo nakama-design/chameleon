@@ -1,3 +1,120 @@
 {
-  "components": []
+  "components": [
+    {
+      "content": {
+        "content": "# MyComponent\n\nThis is a description of the component\n\n## Props\n\n<!-- @vuese:MyComponent:props:start -->\n|Name|Description|Type|Required|Default|\n|---|---|---|---|---|\n|name|The name of the form, up to 8 characters|`String` /  `Number`|`true`|-|\n\n<!-- @vuese:MyComponent:props:end -->\n\n\n## Events\n\n<!-- @vuese:MyComponent:events:start -->\n|Event Name|Description|Parameters|\n|---|---|---|\n|onclear|Fire when the form is cleared|The argument is a boolean value representing xxx|\n\n<!-- @vuese:MyComponent:events:end -->\n\n\n## Slots\n\n<!-- @vuese:MyComponent:slots:start -->\n|Name|Description|Default Slot Content|\n|---|---|---|\n|header|Form header|`<th>title</th>`|\n\n<!-- @vuese:MyComponent:slots:end -->\n\n\n## Methods\n\n<!-- @vuese:MyComponent:methods:start -->\n|Method|Description|Parameters|\n|---|---|---|\n|clear|Used to manually clear the form|-|\n\n<!-- @vuese:MyComponent:methods:end -->\n\n\n",
+        "componentName": "MyComponent",
+        "groupName": "BASIC"
+      },
+      "componentDesc": {
+        "default": [
+          "This is a description of the component"
+        ]
+      },
+      "name": "MyComponent",
+      "props": [
+        {
+          "name": "name",
+          "type": [
+            "String",
+            "Number"
+          ],
+          "describe": [
+            "The name of the form, up to 8 characters"
+          ],
+          "required": true,
+          "validator": "validator() {}"
+        }
+      ],
+      "methods": [
+        {
+          "name": "clear",
+          "describe": [
+            "Used to manually clear the form"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "name": "onclear",
+          "isSync": false,
+          "syncProp": "",
+          "describe": [
+            "Fire when the form is cleared"
+          ],
+          "argumentsDesc": [
+            "The argument is a boolean value representing xxx"
+          ]
+        }
+      ],
+      "slots": [
+        {
+          "name": "header",
+          "describe": "Form header",
+          "backerDesc": "`<th>title</th>`",
+          "bindings": {},
+          "scoped": false,
+          "target": "template"
+        }
+      ]
+    },
+    {
+      "content": {
+        "content": "# MyComponent\n\nThis is a description of the component\n\n## Props\n\n<!-- @vuese:MyComponent:props:start -->\n|Name|Description|Type|Required|Default|\n|---|---|---|---|---|\n|name|The name of the form, up to 8 characters|`String` /  `Number`|`true`|-|\n\n<!-- @vuese:MyComponent:props:end -->\n\n\n## Events\n\n<!-- @vuese:MyComponent:events:start -->\n|Event Name|Description|Parameters|\n|---|---|---|\n|onclear|Fire when the form is cleared|The argument is a boolean value representing xxx|\n\n<!-- @vuese:MyComponent:events:end -->\n\n\n## Slots\n\n<!-- @vuese:MyComponent:slots:start -->\n|Name|Description|Default Slot Content|\n|---|---|---|\n|header|Form header|`<th>title</th>`|\n\n<!-- @vuese:MyComponent:slots:end -->\n\n\n## Methods\n\n<!-- @vuese:MyComponent:methods:start -->\n|Method|Description|Parameters|\n|---|---|---|\n|clear|Used to manually clear the form|-|\n\n<!-- @vuese:MyComponent:methods:end -->\n\n\n",
+        "componentName": "MyComponent",
+        "groupName": "BASIC"
+      },
+      "componentDesc": {
+        "default": [
+          "This is a description of the component"
+        ]
+      },
+      "name": "MyComponent",
+      "props": [
+        {
+          "name": "name",
+          "type": [
+            "String",
+            "Number"
+          ],
+          "describe": [
+            "The name of the form, up to 8 characters"
+          ],
+          "required": true,
+          "validator": "validator() {}"
+        }
+      ],
+      "methods": [
+        {
+          "name": "clear",
+          "describe": [
+            "Used to manually clear the form"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "name": "onclear",
+          "isSync": false,
+          "syncProp": "",
+          "describe": [
+            "Fire when the form is cleared"
+          ],
+          "argumentsDesc": [
+            "The argument is a boolean value representing xxx"
+          ]
+        }
+      ],
+      "slots": [
+        {
+          "name": "header",
+          "describe": "Form header",
+          "backerDesc": "`<th>title</th>`",
+          "bindings": {},
+          "scoped": false,
+          "target": "template"
+        }
+      ]
+    }
+  ]
 }

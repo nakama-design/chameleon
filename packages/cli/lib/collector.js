@@ -1,12 +1,16 @@
 const collector = __dirname;
 const project = process.cwd();
 
+const lstat = require("lstat");
 const path = require("path");
 const glob = require("fast-glob");
 const yaml = require("read-yaml-promise");
 const sander = require("sander");
 const { log } = require("./utils");
 const package = require("../package.json");
+
+const { parser } = require('@vuese/parser')
+const { Render } = require('@vuese/markdown-render')
 
 const FLAG_NEWLINE = /\n/g;
 const FLAG_COMMENTS = /(\/\*|\-{4})(.|[\r\n])*?(\*\/|\-{4})/gm;
@@ -112,16 +116,24 @@ module.exports = async flags => {
 
         if (comments.length > 0) {
           const attributes = comments[0].match(FLAG_ATTRIBUTES);
-          const brackets = {
-            path: file
-          };
 
           if (!attributes) {
             return
           }
 
+          const { size, ctimeMs, birthtimeMs } = await lstat(file)
+
+          const brackets = {
+            path: file,
+            size: size,
+            changed: ctimeMs,
+            created: birthtimeMs
+          };
+
           switch (format) {
             case "js":
+            case "ts":
+            case "php":
               attributes.map(attr => {
                 const [, key, value] = attr
                   .replace(FLAG_NEWLINE, "#")
@@ -194,6 +206,25 @@ module.exports = async flags => {
               result = content;
               break;
           }
+        }
+      }
+
+      if (format === 'vue') {
+        try {
+          const parserRes = parser(content)
+          const renderRes = new Render(parserRes)
+          const markdownRes = renderRes.renderMarkdown()
+
+          if (markdownRes !== null) {
+            RESULTS["components"].push({
+              content: markdownRes,
+              ...parserRes
+            });
+    
+            result = content;
+          }
+        } catch (err) {
+          throw Error(err)
         }
       }
 

@@ -2,6 +2,9 @@
   "routes": [
     {
       "path": "routes/fine.js",
+      "size": 219,
+      "changed": 1564877691000,
+      "created": 1564877691000,
       "name": "Example API",
       "type": "Routes",
       "method": "GET",
@@ -20,6 +23,9 @@
     },
     {
       "path": "routes/a/c/fine.js",
+      "size": 219,
+      "changed": 1564877691000,
+      "created": 1564877691000,
       "name": "Example API",
       "type": "Routes",
       "method": "GET",

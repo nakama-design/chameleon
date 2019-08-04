@@ -1,19 +1,33 @@
 <template>
   <div>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi delectus aspernatur, dicta soluta recusandae harum voluptatibus quos laborum, vero cupiditate consequuntur minima eaque suscipit dolor quo nihil quia ipsam culpa!
+    <!-- Form header -->
+    <slot name="header">
+      <!-- `<th>title</th>` -->
+      <th>title</th>
+    </slot>
   </div>
 </template>
 
 <script>
-// This is example component
-
+// This is a description of the component
 export default {
-  data() {
-    return {
-      // example data prop
-      prop: ''
+  name: 'MyComponent',
+  props: {
+    // The name of the form, up to 8 characters
+    name: {
+      type: [String, Number],
+      required: true,
+      validator () {}
     }
-  }  
+  },
+  methods: {
+    // @vuese
+    // Used to manually clear the form
+    clear () {
+      // Fire when the form is cleared
+      // @arg The argument is a boolean value representing xxx
+      this.$emit('onclear', true)
+    }
+  }
 }
 </script>
-
