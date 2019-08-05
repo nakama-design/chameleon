@@ -1,9 +1,0 @@
-format:
-  - js
-  - md
-  - vue
-exclude:
-  - node_modules
-destination:
-host:
-port: 6000

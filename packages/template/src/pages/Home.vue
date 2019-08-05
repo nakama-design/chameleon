@@ -1,33 +1,37 @@
 <template>
   <Layout>
     <div class="row">
-      <div class="col-12">
+      <div class="col-8">
         <Card
-          title="Total file by created date"
+          title="Total created file by date"
           type="chart"
           :data="chart"
         />
       </div>
       <div class="col-4">
-        <Card
-          title="Max usage format"
-          type="statistics"
-          :data="statistics.usage"
-        />
-      </div>
-      <div class="col-4">
-        <Card
-          title="Maximum size"
-          type="statistics"
-          :data="statistics.large"
-        />
-      </div>
-      <div class="col-4">
-        <Card
-          title="Most documented"
-          type="statistics"
-          :data="statistics.documented"
-        />
+        <div class="row">
+          <div class="col-12">
+            <Card
+              title="Most usage format"
+              type="statistics"
+              :data="statistics.usage"
+            />
+          </div>
+          <div class="col-12">
+            <Card
+              title="Maximum size"
+              type="statistics"
+              :data="statistics.large"
+            />
+          </div>
+          <div class="col-12">
+            <Card
+              title="Most documented"
+              type="statistics"
+              :data="statistics.documented"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </Layout>
@@ -55,6 +59,20 @@ export default {
         dataset: [],
         labels: []
       },
+      colors: {
+        components: {
+          fill: 'rgba(46, 204, 113, 0.4)',
+          border: '#2ecc71'
+        },
+        documents: {
+          fill: 'rgba(52, 152, 219, 0.4)',
+          border: '#3498db'
+        },
+        routes: {
+          fill: 'rgba(155, 89, 182, 0.4)',
+          border: '#9b59b6'
+        }
+      }
     };
   },
   mounted() {
@@ -117,6 +135,8 @@ export default {
 
       this.chart.dataset.push({
         label: type,
+        backgroundColor: this.colors[type].fill,
+        borderColor: this.colors[type].border,
         data: Object.values(chartDataBracket)
       });
     });

@@ -1,5 +1,6 @@
 <script>
 import { Line } from 'vue-chartjs'
+import parse from 'dayjs'
 
 export default {
   extends: Line,
@@ -16,9 +17,12 @@ export default {
   mounted () {
     setTimeout(() => {
       this.renderChart({
-        labels: this.data.labels,
+        labels: this.data.labels.map(time => parse(parseInt(time) * 1).format('MM/DD HH:mm')),
         datasets: this.data.dataset
-      }, {responsive: true, maintainAspectRatio: false})
+      }, {
+        responsive: true,
+        maintainAspectRatio: false
+      })
     }, 500)
   }
 }

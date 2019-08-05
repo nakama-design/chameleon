@@ -16,6 +16,7 @@ const FLAG_NEWLINE = /\n/g;
 const FLAG_COMMENTS = /(\/\*|\-{4})(.|[\r\n])*?(\*\/|\-{4})/gm;
 const FLAG_ATTRIBUTES = /\@.*(?=\{)(.|[\r\n])*?\}|(\@.+|^\w.+\:.+)/gm;
 const FLAG_SUB_ATTRIBUTES = /\@([^\s]+)\s(.*)/;
+const FLAG_TYPE_DATA = /^(.*)\((.*)\)(\!?).+\:(.*)/;
 const FLAG_SCHEMA = /\[(flow|sequence|gantt|class|git)\]((.|[\r\n])*?)\[\/(flow|sequence|gantt|class|git)\]/gm
 const RESULTS = {
   documents: [],
@@ -122,7 +123,6 @@ module.exports = async flags => {
       const { size, ctimeMs, birthtimeMs } = await lstat(file)
 
       const brackets = {
-        id: uniqueId(),
         path: file,
         size: size,
         changed: ctimeMs,
@@ -134,88 +134,113 @@ module.exports = async flags => {
         const comments = content.match(FLAG_COMMENTS);
 
         if (comments.length > 0) {
-          const attributes = comments[0].match(FLAG_ATTRIBUTES);
+          comments.map(comment => {
+            if (FLAG_ATTRIBUTES.test(comment)) {
+              brackets.id = uniqueId()
 
-          if (!attributes) {
-            return
-          }
+              const attributes = comment.match(FLAG_ATTRIBUTES);
 
-          switch (format) {
-            case "js":
-            case "ts":
-            case "php":
-              attributes.map(attr => {
-                const [, key, value] = attr
-                  .replace(FLAG_NEWLINE, "#")
-                  .match(FLAG_SUB_ATTRIBUTES);
-
-                brackets[key.trim()] = value.trim();
-              });
-
-              if (brackets.parameters) {
-                const subBrackets = {};
-
-                brackets.parameters
-                  .split("#")
-                  .map(line => {
-                    return line.replace("*", "").trim();
-                  })
-                  .filter(line => {
-                    return !["{", "}"].includes(line);
-                  })
-                  .map(line => {
-                    const [key, value] = line.split(":");
-                    const [
-                      typeData,
-                      required,
-                      defaultValue
-                    ] = value.trim().split(" ");
-
-                    subBrackets[key.trim()] = {
-                      type: typeData,
-                      required: !!required,
-                      default: defaultValue
-                    };
-
-                    return;
+              switch (format) {
+                case "js":
+                case "ts":
+                case "php":
+                  attributes.map(attr => {
+                    const hashNewLine = attr.replace(FLAG_NEWLINE, "#")
+    
+                    if (FLAG_SUB_ATTRIBUTES.test(hashNewLine)) {
+                      const [, key, value] = hashNewLine.match(FLAG_SUB_ATTRIBUTES);
+    
+                      brackets[key.trim()] = value.trim();
+                    }
                   });
+    
+                  if (brackets.parameters) {
+                    const subBrackets = {};
+    
+                    brackets.parameters
+                      .split("#")
+                      .map(line => {
+                        return line.replace("*", "").trim();
+                      })
+                      .filter(line => {
+                        return !["{", "}"].includes(line);
+                      })
+                      .map(line => {
+                        const subBracketsAttribute = {}
 
-                brackets.parameters = subBrackets;
+                        if (FLAG_TYPE_DATA.test(line)) {
+                          const [ _, field, type, required, value ] = FLAG_TYPE_DATA.exec(line)
+                          
+                          if (!!type) {
+                            subBracketsAttribute['type'] = type.trim()
+                          }
+                          
+                          if (!!required) {
+                            subBracketsAttribute['required'] = !!required
+                          }
+                          
+                          if (!!value) {
+                            subBracketsAttribute['value'] = value.trim()
+                          }
+
+                          subBrackets[field.trim()] = subBracketsAttribute
+                        }
+    
+                        return;
+                      });
+    
+                    brackets.parameters = subBrackets;
+                  }
+
+                  if (brackets.group) {
+                    brackets.group_name = brackets.group
+                    brackets.group_slug = brackets.group.replace(/\s|\n/, '-').toLowerCase()
+
+                    delete brackets.group
+                  }
+    
+                  if (brackets.name && brackets.type) {
+                    RESULTS["routes"].push({
+                      ...brackets
+                    });
+      
+                    result = attributes;
+                  }
+                  break;
+    
+                case "md":
+                  const schema = {}
+                  const plain = content.replace(FLAG_COMMENTS, "").trim()
+                  const replaced = plain.replace(FLAG_SCHEMA, (match, contents, offset, input_string) => {
+                    const currentId = uniqueId()
+                    schema[currentId] = offset.trim()
+    
+                    return `<div id="${currentId}" class="mermaid-chart"></div>`
+                  })
+    
+                  attributes.map(attr => {
+                    const [key, value] = attr.split(":");
+    
+                    if (key && value) {
+                      brackets[key.trim()] = value.trim();
+                    }
+                  });
+    
+    
+                  if (brackets.name && brackets.type) {
+                    RESULTS["documents"].push({
+                      plain: plain,
+                      schema: schema,
+                      content: replaced,
+                      ...brackets
+                    });
+      
+                    result = content;
+                  }
+                  break;
               }
-
-              RESULTS["routes"].push({
-                ...brackets
-              });
-
-              result = attributes;
-              break;
-
-            case "md":
-              const schema = {}
-              const plain = content.replace(FLAG_COMMENTS, "").trim()
-              const replaced = plain.replace(FLAG_SCHEMA, (match, contents, offset, input_string) => {
-                const currentId = uniqueId()
-                schema[currentId] = offset.trim()
-
-                return `<div id="${currentId}" class="mermaid-chart"></div>`
-              })
-
-              attributes.map(attr => {
-                const [key, value] = attr.split(":");
-
-                brackets[key.trim()] = value.trim();
-              });
-
-              RESULTS["documents"].push({
-                plain: plain,
-                schema: schema,
-                content: replaced,
-                ...brackets
-              });
-
-              result = content;
-              break;
-          }
+            }
+          })
         }
       }
 
@@ -225,10 +250,11 @@ module.exports = async flags => {
           const renderRes = new Render(parserRes)
           const markdownRes = renderRes.renderMarkdown()
 
-          if (markdownRes !== null) {
+          if (markdownRes !== null && parserRes.name) {
             RESULTS["components"].push({
               type: 'Components',
               parser: parserRes,
+              name: parserRes.name,
               ...markdownRes,
               ...brackets
             });

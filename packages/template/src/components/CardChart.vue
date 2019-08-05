@@ -8,9 +8,11 @@
         v-if="type === 'chart'"
         :data="data"
       />
-      <div v-else>
-        <h2>{{ data.total }}</h2>
-        <h4>{{ data.name }}</h4>
+      <div v-else class="d-flex align-items-center">
+        <h1>{{ data.total }}</h1>
+        <div class="ml-3">
+          {{ typeof data.total == 'number' ? 'Files' : '' }} {{ data.name }}
+        </div>
       </div>
     </div>
   </b-card>
@@ -39,3 +41,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.card {
+  .card-body {
+    padding: 12px 20px;
+  }
+}
+</style>
+

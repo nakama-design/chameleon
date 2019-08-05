@@ -1,8 +1,6 @@
-# Meet 🐋 Laboon
+# @laboon/cli
 
-Laboon are *modern documentation generator* for your application, with simple configuration. That can generate beautiful and simple documentation from your JavaScript, TypeScript, Markdown or even Vue Component. With block comments `/**...*/` annotation you can describe the function / docs and Laboon will generate a user interface for you.
-
-> Laboon is the name of large whale in the anime Straw Hat Pirates [detail](https://onepiece.fandom.com/wiki/Laboon)
+> Note here
 
 ## Usage
 
