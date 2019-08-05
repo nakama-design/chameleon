@@ -1,16 +1,22 @@
 <template>
   <b-card>
-    <b-card>
-      Search
-    </b-card>
-    <ul>
-      <li>Project 1</li>
-    </ul>
+    <b-form-input
+      v-model="keyword"
+      placeholder="Search something ..."
+    />
+    <b-nav vertical>
+      <b-nav-item
+        v-for="item in data"
+        :key="item.index"
+      >
+        {{ item.name || item.componentName }}
+      </b-nav-item>
+    </b-nav>
   </b-card>
 </template>
 
 <script>
-import { MaximizeIcon, MinimizeIcon } from 'vue-feather-icons'
+import { ArrowRightIcon } from 'vue-feather-icons'
 
 export default {
   props: {
@@ -20,8 +26,12 @@ export default {
     }
   },
   components: {
-    MaximizeIcon,
-    MinimizeIcon
+    ArrowRightIcon
+  },
+  data() {
+    return {
+      keyword: ''
+    }
   }
 }
 </script>

@@ -6,6 +6,12 @@ module.exports = function (api) {
   })
 
   api.createPages(({ createPage }) => {
+    createPage({
+      path: '/',
+      component: './src/pages/Home.vue',
+      context: sources
+    })
+
     Object.keys(sources).map(page => {
       createPage({
         path: `/list/${page}`,
@@ -14,6 +20,18 @@ module.exports = function (api) {
           page: page,
           content: sources[page]
         }
+      })
+
+      sources[page].forEach((file, index) => {
+        createPage({
+          path: `/detail/${page}-${file.id}`,
+          component: './src/pages/Detail.vue',
+          context: {
+            page: page,
+            index: file.id,
+            content: file
+          }
+        })
       })
     })
   })

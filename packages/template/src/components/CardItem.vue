@@ -1,26 +1,14 @@
 <template>
-  <b-card
-    role="tab"
-    :class="{
-      'card-maximize': full
-    }"
-  >
+  <b-card role="tab">
     <div class="card-action">
       <div
         class="card-action_button"
-        @click="changeSize"
+        @click="$router.push(`/detail/${data.type.toLowerCase()}-${data.id}`)"
       >
-        <Maximize2Icon v-if="!full" />
-        <Minimize2Icon v-else />
+        <ArrowRightIcon />
       </div>
     </div>
-    <div
-      class="card-heading"
-      :class="visible ? 'collapsed' : null"
-      :aria-expanded="visible ? 'true' : 'false'"
-      aria-controls="collapse-4"
-      @click="changeVisible"
-    >
+    <div class="card-heading">
       <div
         v-for="(value, key) in fields[data.type.toLowerCase()]"
         :key="key"
@@ -34,35 +22,11 @@
         </div>
       </div>
     </div>
-    <b-collapse
-      :id="index.toString()"
-      v-model="visible"
-      accordion="accordions"
-      role="tabpanel"
-    >
-      <div class="card-body">
-        <!-- Wrapper for Component -->
-        <CardComponent
-          v-if="data.type.toLowerCase() === 'components'"
-          :data="data"
-        />
-        <!-- Wrapper for Markdown -->
-        <CardMarkdown
-          v-if="data.type.toLowerCase() === 'documents'"
-          :data="data"
-        />
-        <!-- Wrapper for Repl -->
-        <CardRepl
-          v-if="data.type.toLowerCase() === 'routes'"
-          :data="data"
-        />
-      </div>
-    </b-collapse>
   </b-card>
 </template>
 
 <script>
-import { Maximize2Icon, Minimize2Icon } from 'vue-feather-icons'
+import { ArrowRightIcon } from 'vue-feather-icons'
 import CardComponent from '@/components/CardComponent.vue'
 import CardMarkdown from '@/components/CardMarkdown.vue'
 import CardRepl from '@/components/CardRepl.vue'
@@ -82,8 +46,7 @@ export default {
     CardComponent,
     CardMarkdown,
     CardRepl,
-    Maximize2Icon,
-    Minimize2Icon
+    ArrowRightIcon
   },
   data() {
     return {

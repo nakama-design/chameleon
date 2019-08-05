@@ -22,6 +22,14 @@ const RESULTS = {
   components: [],
   routes: []
 };
+const supportedFormat = {
+  js: 'JavaScript',
+  ts: 'TypeScript',
+  php: 'PHP',
+  md: 'Markdown',
+  mdx: 'MarkdownX',
+  vue: 'Vue Component'
+}
 
 const uniqueId = () => {
   return '_' + Math.random().toString(36).substr(2, 9)
@@ -114,10 +122,12 @@ module.exports = async flags => {
       const { size, ctimeMs, birthtimeMs } = await lstat(file)
 
       const brackets = {
+        id: uniqueId(),
         path: file,
         size: size,
         changed: ctimeMs,
-        created: birthtimeMs
+        created: birthtimeMs,
+        format: supportedFormat[format] || 'unknown'
       };
 
       if (FLAG_COMMENTS.test(content)) {

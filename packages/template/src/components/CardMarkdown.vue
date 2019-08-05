@@ -37,6 +37,10 @@ export default {
           Object.keys(this.data.schema).map(className => {
             const container = document.querySelector(`#${className}`)
 
+            if (container && container.firstChild) {
+              return
+            }
+
             mermaid.render(`mermaid${className}`, this.data.schema[className], code => {
               if (container) {
                 container.innerHTML = code
@@ -44,7 +48,7 @@ export default {
             })
           })
         }
-      }, 1500)
+      }, 500)
     }
   }
 }

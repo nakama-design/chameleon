@@ -2,7 +2,7 @@
   <Layout>
     <div class="row">
       <div class="col-3">
-        <Sidebar :data="{}" />
+        <Sidebar :data="$context.content" />
       </div>
       <div class="col-9">
         <div role="tablist">
