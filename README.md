@@ -1,4 +1,6 @@
-# Meet 🐋 Laboon
+![Logo](assets/logo-text-full.png)
+
+# Meet Laboon
 
 Laboon are *modern documentation generator* for your application, with simple configuration. That can generate beautiful and simple documentation from your JavaScript, TypeScript, Markdown or even Vue Component. With block comments `/**...*/` annotation you can describe the function / docs and Laboon will generate a user interface for you.
 

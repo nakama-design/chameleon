@@ -24,6 +24,7 @@
     "bootstrap-vue": "^2.0.0-rc.27",
     "chart.js": "^2.8.0",
     "dayjs": "^1.8.15",
+    "fuse.js": "^3.4.5",
     "gridsome": "^0.6.0",
     "marked": "^0.7.0",
     "mermaid": "^8.2.3",
