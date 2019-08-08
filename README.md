@@ -16,9 +16,13 @@ Laboon are *modern documentation generator* for your application, with simple co
 | Graph Preview |
 |![Graph Preview](./assets/graph-mode.png)|
 
-## Usage
+## Install
 
-### Install
+### Using Docker
+
+> We will update soon
+
+### Using Node.js
 
 Install **laboon** with :
 
@@ -56,6 +60,8 @@ Options
 Examples
   $ laboon -f vue -f md -e node_modules -s src -d docs
 ```
+
+## Usage
 
 ### Start Laboon
 
