@@ -3,14 +3,6 @@
     <div class="row">
       <div class="col-12">
         <b-card>
-          <div class="card-action">
-            <div
-              class="card-action_button"
-              @click="$router.push(`/list/${$context.content.type.toLowerCase()}`)"
-            >
-              <ArrowLeftIcon />
-            </div>
-          </div>
           <div class="card-heading">
             <div
               v-for="(value, key) in fields[$context.content.type.toLowerCase()]"
@@ -80,7 +72,7 @@ export default {
           path: 'Path'
         },
         components: {
-          componentName: 'Name',
+          name: 'Name',
           type: 'Type',
           size: 'Size',
           created: 'Created At'

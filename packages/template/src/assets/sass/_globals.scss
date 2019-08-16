@@ -26,15 +26,12 @@ $dark-mode-border: #090C26;
   border-radius: 10px;
   margin-bottom: 20px;
   position: relative;
+  cursor: pointer;
 
   &-action {
     position: absolute;
     top: 36px;
     right: 36px;
-
-    &_button {
-      cursor: pointer;
-    }
   }
   &-heading {
     display: flex;
@@ -42,6 +39,7 @@ $dark-mode-border: #090C26;
   }
   &-item {
     margin-right: 36px;
+    width: calc(100% / 4);
 
     &:last-child {
       margin: 0;
@@ -90,5 +88,15 @@ $dark-mode-border: #090C26;
     .viewer-content {
       color: $dark-grey;
     }
+  }
+}
+.page {
+  &-title {
+    @include font-quicksands-medium;
+
+    font-size: 20px;
+    color: $grey;
+    text-transform: uppercase;
+    margin-bottom: 10px;
   }
 }

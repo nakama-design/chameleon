@@ -229,7 +229,6 @@ module.exports = async flags => {
     
                   if (brackets.name && brackets.type) {
                     RESULTS["documents"].push({
-                      plain: plain,
                       schema: schema,
                       content: replaced,
                       ...brackets
@@ -250,7 +249,7 @@ module.exports = async flags => {
           const renderRes = new Render(parserRes)
           const markdownRes = renderRes.renderMarkdown()
 
-          if (markdownRes !== null && parserRes.name) {
+          if (parserRes.name) {
             RESULTS["components"].push({
               type: 'Components',
               parser: parserRes,

@@ -13,9 +13,7 @@
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav class="ml-auto">
             <b-nav-item to="/">Home</b-nav-item>
-            <b-nav-item v-if="documentsEnable" to="/list/documents">Documents</b-nav-item>
-            <b-nav-item v-if="componentsEnable" to="/list/components">Components</b-nav-item>
-            <b-nav-item v-if="routesEnable" to="/list/routes">Routes</b-nav-item>
+            <b-nav-item to="/list/documents">Documentations</b-nav-item>
             <b-nav-item to="/about">About</b-nav-item>
             <b-form-checkbox v-model="checked" name="check-button" switch />
           </b-navbar-nav>
@@ -37,8 +35,6 @@ query {
 </static-query>
 
 <script>
-import Laboon from '@/data/laboon.json'
-
 export default {
   data() {
     return {
@@ -47,23 +43,9 @@ export default {
       componentsEnable: false,
       routesEnable: false
     }
-  },
-  mounted() {
-    if (Laboon.components.length > 0) {
-      this.componentsEnable = true
-    }
-
-    if (Laboon.documents.length > 0) {
-      this.documentsEnable = true
-    }
-
-    if (Laboon.routes.length > 0) {
-      this.routesEnable = true
-    }
   }
 }
 </script>
-
 
 <style lang="scss">
   article {

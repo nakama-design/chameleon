@@ -24,7 +24,7 @@ export default {
     }
   },
   mounted() {
-    if (document !== 'undefined') {
+    if (process.isClient) {
       this.render(this.data.content)
     }
   },
@@ -33,19 +33,21 @@ export default {
       this.string = marked(string)
 
       setTimeout(() => {
-        if (this.data.schema) {
+        if (process.isClient && this.data.schema) {
           Object.keys(this.data.schema).map(className => {
             const container = document.querySelector(`#${className}`)
 
-            if (container && container.firstChild) {
-              return
-            }
-
-            mermaid.render(`mermaid${className}`, this.data.schema[className], code => {
-              if (container) {
-                container.innerHTML = code
+            if (typeof window !== 'undefined') {
+              if (container && container.firstChild) {
+                return
               }
-            })
+
+              mermaid.render(`mermaid${className}`, this.data.schema[className], code => {
+                if (container) {
+                  container.innerHTML = code
+                }
+              })
+            }
           })
         }
       }, 500)

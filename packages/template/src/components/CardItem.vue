@@ -1,12 +1,7 @@
 <template>
-  <b-card role="tab">
+  <b-card @click="$router.push(`/detail/${data.type.toLowerCase()}-${data.id}`)">
     <div class="card-action">
-      <div
-        class="card-action_button"
-        @click="$router.push(`/detail/${data.type.toLowerCase()}-${data.id}`)"
-      >
-        <ArrowRightIcon />
-      </div>
+      <ArrowRightIcon />
     </div>
     <div class="card-heading">
       <div
@@ -66,7 +61,7 @@ export default {
           path: 'Path'
         },
         components: {
-          componentName: 'Name',
+          name: 'Name',
           type: 'Type',
           size: 'Size',
           created: 'Created At'

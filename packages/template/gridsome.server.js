@@ -18,7 +18,8 @@ module.exports = function (api) {
         component: './src/pages/List.vue',
         context: {
           page: page,
-          content: sources[page]
+          content: sources[page],
+          paths: Object.keys(sources)
         }
       })
 

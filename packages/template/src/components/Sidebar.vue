@@ -5,19 +5,16 @@
       @input="searchKeyword"
     />
     <div class="sidebar-list" vertical>
-      <div
-        v-for="(parent, title) in data"
-        :key="title"
-        class="sidebar-list__title"
-      >
-        {{ title }}
+      <div class="sidebar-list__title">
+        <div>Pages</div>
         <b-nav vertical>
           <b-nav-item
-            v-for="(child, index) in parent"
+            v-for="(child, index) in content"
             :key="index"
             class="sidebar-list__item"
+            @click="$router.push(`/list/${child}`)"
           >
-            {{ child.name }}
+            {{ child }}
           </b-nav-item>
         </b-nav>
       </div>
@@ -26,17 +23,12 @@
 </template>
 
 <script>
-import { ArrowRightIcon } from 'vue-feather-icons'
-
 export default {
   props: {
-    data: {
+    content: {
       type: [Object, Array],
       default: () => []
     }
-  },
-  components: {
-    ArrowRightIcon
   },
   methods: {
     searchKeyword(keyword) {
@@ -73,6 +65,7 @@ export default {
       font-weight: 400;
       color: #E0E0E0;
       font-size: 16px;
+      margin-left: -5px;
     }
   }
 }

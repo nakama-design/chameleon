@@ -3,18 +3,26 @@
     <div class="row">
       <div class="col-3">
         <Sidebar
-          :data="sidebarData"
-          @search="searchSidebarData"
+          :content="$context.paths"
+          @search="searchContent"
         />
       </div>
       <div class="col-9">
         <div role="tablist">
-          <Card
-            v-for="(item, index) in $context.content"
-            :key="index"
-            :index="index"
-            :data="item"
-          />
+          <div
+            v-for="(items, parent) in content"
+            :key="parent"
+          >
+            <div class="page-title">
+              {{ parent }}
+            </div>
+            <Card
+              v-for="(item, index) in items"
+              :key="index"
+              :index="index"
+              :data="item"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -36,10 +44,11 @@ export default {
   },
   data() {
     return {
-      sidebarData: {
+      sidebar: [],
+      content: {
         general: []
       },
-      saerchOptions: {
+      searchOption: {
         caseSensitive: false,
         shouldSort: true,
         includeScore: false,
@@ -62,16 +71,28 @@ export default {
     }
   },
   mounted() {
+    this.resetContent()
     this.renderSidebar(this.$context.content)
   },
+  watch: {
+    $context({ content }) {
+      this.resetContent()
+      this.renderSidebar(content)
+    },
+  },
   methods: {
+    resetContent() {
+      this.content = {
+        general: []
+      }
+    },
     renderSidebar(data) {
       if (Array.isArray(data)) {
         return data
           .map(file => {
             if (file.group) {
-              if (!this.sidebarData[group]) {
-                this.sidebarData[group] = []
+              if (!this.content[group]) {
+                this.content[group] = []
               }
             }
 
@@ -79,25 +100,23 @@ export default {
           })
           .map(file => {
             if (file.group) {
-              this.sidebarData[file.group].push(file)
+              this.content[file.group].push(file)
             } else {
-              this.sidebarData.general.push(file)
+              this.content.general.push(file)
             }
           })
       }
 
       throw Error(`Variable ${data} is not Array type`)
     },
-    searchSidebarData(keyword) {
+    searchContent(keyword) {
       if (keyword.length > 0) {
-        this.sidebarData = {
-          general: []
-        }
-  
-        const fuse = new Fuse(this.$context.content, this.saerchOptions)
+        this.resetContent()
+        const fuse = new Fuse(this.$context.content, this.searchOption)
   
         this.renderSidebar(fuse.search(keyword))
       } else {
+        this.resetContent()
         this.renderSidebar(this.$context.content)
       }
     }
