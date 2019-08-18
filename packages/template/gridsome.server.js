@@ -19,7 +19,9 @@ module.exports = function (api) {
         context: {
           page: page,
           content: sources[page],
-          paths: Object.keys(sources)
+          paths: Object.keys(sources).map(key => {
+            return [key, sources[key].length]
+          })
         }
       })
 

@@ -9,11 +9,29 @@
         :key="key"
         class="card-item"
       >
-        <div class="card-item_title">
-          {{ value }}
+        <div v-if="key === 'size'">
+          <div class="card-item_title">
+            {{ value }}
+          </div>
+          <div class="card-item_description">
+            {{ toByte(data[key]) }}
+          </div>
         </div>
-        <div class="card-item_description">
-          {{ data[key] }}
+        <div v-else-if="key === 'created'">
+          <div class="card-item_title">
+            {{ value }}
+          </div>
+          <div class="card-item_description">
+            {{ toDate(data[key]) }}
+          </div>
+        </div>
+        <div v-else>
+          <div class="card-item_title">
+            {{ value }}
+          </div>
+          <div class="card-item_description">
+            {{ data[key] }}
+          </div>
         </div>
       </div>
     </div>
@@ -25,6 +43,8 @@ import { ArrowRightIcon } from 'vue-feather-icons'
 import CardComponent from '@/components/CardComponent.vue'
 import CardMarkdown from '@/components/CardMarkdown.vue'
 import CardRepl from '@/components/CardRepl.vue'
+import bytes from 'bytes';
+import dayjs, { Dayjs } from 'dayjs';
 
 export default {
   props: {
@@ -70,17 +90,11 @@ export default {
     }
   },
   methods: {
-    changeVisible() {
-      if (!this.full) {
-        this.visible = !this.visible
-      }
+    toByte(num) {
+      return bytes(num);
     },
-    changeSize() {
-      this.full = !this.full
-
-      if (this.full) {
-        this.visible = true
-      }
+    toDate(num) {
+      return dayjs.unix(num / 1000).format('MM-DD-YYYY HH:mm');
     }
   }
 }

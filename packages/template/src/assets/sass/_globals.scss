@@ -39,10 +39,18 @@ $dark-mode-border: #090C26;
   }
   &-item {
     margin-right: 36px;
-    width: calc(100% / 4);
 
     &:last-child {
       margin: 0;
+    }
+    &:nth-child(1) {
+      width: 160px;
+    }
+    &:nth-child(2) {
+      width: 100px;
+    }
+    &:nth-child(3) {
+      width: 80px;
     }
     &_title {
       @include font-quicksands-medium;

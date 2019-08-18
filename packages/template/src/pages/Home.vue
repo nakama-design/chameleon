@@ -39,6 +39,7 @@
 
 <script>
 import Card from "@/components/CardChart.vue";
+import bytes from 'bytes';
 
 export default {
   metaInfo: {
@@ -148,7 +149,7 @@ export default {
     const largeData = largeBracket[Object.keys(largeBracket).pop()]
     this.statistics.large = {
       name: largeData.name || largeData.componentName,
-      total: ((largeData.size || 0) / 1024).toFixed(2) + 'KB'
+      total: bytes(largeData.size)
     };
 
     this.statistics.usage = {

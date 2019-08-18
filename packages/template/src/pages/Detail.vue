@@ -2,6 +2,9 @@
   <Layout>
     <div class="row">
       <div class="col-12">
+        <div class="btn btn-link mb-4" @click="$router.back()">
+          <ArrowLeftIcon /> Back
+        </div>
         <b-card>
           <div class="card-heading">
             <div
@@ -9,11 +12,29 @@
               :key="key"
               class="card-item"
             >
-              <div class="card-item_title">
-                {{ value }}
+              <div v-if="key === 'size'">
+                <div class="card-item_title">
+                  {{ value }}
+                </div>
+                <div class="card-item_description">
+                  {{ toByte($context.content[key]) }}
+                </div>
               </div>
-              <div class="card-item_description">
-                {{ $context.content[key] }}
+              <div v-else-if="key === 'created'">
+                <div class="card-item_title">
+                  {{ value }}
+                </div>
+                <div class="card-item_description">
+                  {{ toDate($context.content[key]) }}
+                </div>
+              </div>
+              <div v-else>
+                <div class="card-item_title">
+                  {{ value }}
+                </div>
+                <div class="card-item_description">
+                  {{ $context.content[key] }}
+                </div>
               </div>
             </div>
           </div>
@@ -46,6 +67,8 @@ import { ArrowLeftIcon } from 'vue-feather-icons';
 import CardComponent from '@/components/CardComponent.vue'
 import CardMarkdown from '@/components/CardMarkdown.vue'
 import CardRepl from '@/components/CardRepl.vue'
+import bytes from 'bytes';
+import dayjs, { Dayjs } from 'dayjs';
 
 export default {
   components: {
@@ -78,6 +101,14 @@ export default {
           created: 'Created At'
         }
       }
+    }
+  },
+  methods: {
+    toByte(num) {
+      return bytes(num);
+    },
+    toDate(num) {
+      return dayjs.unix(num / 1000).format('MM-DD-YYYY HH:mm');
     }
   }
 }

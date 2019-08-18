@@ -8,14 +8,18 @@
       <div class="sidebar-list__title">
         <div>Pages</div>
         <b-nav vertical>
-          <b-nav-item
+          <div
             v-for="(child, index) in content"
             :key="index"
-            class="sidebar-list__item"
-            @click="$router.push(`/list/${child}`)"
           >
-            {{ child }}
-          </b-nav-item>
+            <b-nav-item
+              v-if="child[1] > 0"
+              class="sidebar-list__item"
+              @click="$router.push(`/list/${child[0]}`)"
+            >
+              {{ child[0] }} ({{ child[1] }})
+            </b-nav-item>
+          </div>
         </b-nav>
       </div>
     </div>

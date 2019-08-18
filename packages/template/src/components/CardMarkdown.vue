@@ -1,7 +1,7 @@
 <template>
   <div class="viewer">
     <div
-      class="viewer-content"
+      class="viewer-content markdown-body"
       v-html="string"
     />
   </div>
@@ -57,11 +57,19 @@ export default {
 </script>
 
 <style lang="scss">
+@import 'github-markdown-css';
+
 .mermaid-chart {
   padding: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
+}
+.viewer {
+  cursor: default;
+  background-color: #FAFAFA;
+  padding: 20px;
+  border-radius: 6px;
 }
 </style>

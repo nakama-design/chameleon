@@ -53,31 +53,26 @@ export default {
         shouldSort: true,
         includeScore: false,
         includeMatches: false,
-        threshold: 0.6,
+        threshold: 0.2,
         location: 0,
         distance: 100,
         maxPatternLength: 32,
         minMatchCharLength: 1,
         keys: [
-          'path',
-          'format',
           'name',
-          'type',
-          'method',
-          'group_name',
-          'group_slug'
+          'group_name'
         ]
       }
     }
   },
   mounted() {
     this.resetContent()
-    this.renderSidebar(this.$context.content)
+    this.renderContent(this.$context.content)
   },
   watch: {
     $context({ content }) {
       this.resetContent()
-      this.renderSidebar(content)
+      this.renderContent(content)
     },
   },
   methods: {
@@ -86,21 +81,21 @@ export default {
         general: []
       }
     },
-    renderSidebar(data) {
+    renderContent(data) {
       if (Array.isArray(data)) {
         return data
           .map(file => {
-            if (file.group) {
-              if (!this.content[group]) {
-                this.content[group] = []
+            if (file.groupName) {
+              if (!this.content[file.groupName]) {
+                this.content[file.groupName] = []
               }
             }
 
             return file
           })
           .map(file => {
-            if (file.group) {
-              this.content[file.group].push(file)
+            if (file.groupName) {
+              this.content[file.groupName].push(file)
             } else {
               this.content.general.push(file)
             }
@@ -114,10 +109,10 @@ export default {
         this.resetContent()
         const fuse = new Fuse(this.$context.content, this.searchOption)
   
-        this.renderSidebar(fuse.search(keyword))
+        this.renderContent(fuse.search(keyword))
       } else {
         this.resetContent()
-        this.renderSidebar(this.$context.content)
+        this.renderContent(this.$context.content)
       }
     }
   }
