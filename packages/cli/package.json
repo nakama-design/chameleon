@@ -17,7 +17,7 @@
   "homepage": "https://github.com/laboon-docs/laboon#readme",
   "keywords": [],
   "dependencies": {
-    "@vuese/markdown-render": "2.4.0",
+    "@vuese/markdown-render": "2.4.1",
     "@vuese/parser": "2.3.0",
     "fast-glob": "3.0.4",
     "lstat": "1.0.0",
