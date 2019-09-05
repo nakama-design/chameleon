@@ -26,7 +26,7 @@
   "dependencies": {
     "@laboon/cli": "^1.7.2",
     "@laboon/template": "^1.6.2",
-    "rimraf": "^2.6.3",
+    "rimraf": "^3.0.0",
     "sander": "^0.6.0",
     "shelljs": "^0.8.3"
   }

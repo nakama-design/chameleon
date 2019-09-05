@@ -17,13 +17,13 @@
   "homepage": "https://github.com/laboon-docs/laboon#readme",
   "keywords": [],
   "dependencies": {
-    "@vuese/markdown-render": "^2.4.0",
-    "@vuese/parser": "^2.3.0",
-    "fast-glob": "^3.0.4",
-    "lstat": "^1.0.0",
-    "meow": "^5.0.0",
-    "read-yaml-promise": "^1.0.2",
-    "sander": "^0.6.0",
-    "signale": "^1.4.0"
+    "@vuese/markdown-render": "2.5.0",
+    "@vuese/parser": "2.4.0",
+    "fast-glob": "3.0.4",
+    "lstat": "1.0.0",
+    "meow": "5.0.0",
+    "read-yaml-promise": "1.0.2",
+    "sander": "0.6.0",
+    "signale": "1.4.0"
   }
 }
