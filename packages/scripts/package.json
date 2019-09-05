@@ -1,6 +1,6 @@
 {
   "name": "laboon",
-  "version": "1.8.2-dev",
+  "version": "1.8.3-dev",
   "description": "🐋 Modern documentation generator for your application",
   "main": "index.js",
   "engines": {
@@ -24,8 +24,8 @@
   "homepage": "https://github.com/laboon-docs/laboon#readme",
   "keywords": [],
   "dependencies": {
-    "@laboon/cli": "^1.7.1",
-    "@laboon/template": "^1.6.0",
+    "@laboon/cli": "^1.7.2",
+    "@laboon/template": "^1.6.2",
     "rimraf": "^2.6.3",
     "sander": "^0.6.0",
     "shelljs": "^0.8.3"
