@@ -27,7 +27,7 @@
     "dayjs": "1.8.16",
     "fuse.js": "3.4.5",
     "github-markdown-css": "3.0.1",
-    "gridsome": "0.7.2",
+    "gridsome": "0.7.3",
     "marked": "0.7.0",
     "mermaid": "8.2.6",
     "node-sass": "4.12.0",
