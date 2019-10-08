@@ -19,7 +19,7 @@
   "dependencies": {
     "@vuese/markdown-render": "2.5.1",
     "@vuese/parser": "2.4.1",
-    "fast-glob": "3.0.4",
+    "fast-glob": "3.1.0",
     "lstat": "1.0.0",
     "meow": "5.0.0",
     "read-yaml-promise": "1.0.2",
