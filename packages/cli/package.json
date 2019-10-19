@@ -18,7 +18,7 @@
   "keywords": [],
   "dependencies": {
     "@vuese/markdown-render": "2.5.2",
-    "@vuese/parser": "2.4.1",
+    "@vuese/parser": "2.4.2",
     "fast-glob": "3.1.0",
     "lstat": "1.0.0",
     "meow": "5.0.0",
