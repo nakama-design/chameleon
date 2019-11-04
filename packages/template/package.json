@@ -34,7 +34,7 @@
     "sass-loader": "8.0.0",
     "style-resources-loader": "1.2.1",
     "vue": "2.6.10",
-    "vue-chartjs": "3.4.2",
+    "vue-chartjs": "3.5.0",
     "vue-feather-icons": "5.0.0"
   }
 }
