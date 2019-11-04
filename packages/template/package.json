@@ -30,7 +30,7 @@
     "gridsome": "0.7.9",
     "marked": "0.7.0",
     "mermaid": "8.4.0",
-    "node-sass": "4.12.0",
+    "node-sass": "4.13.0",
     "sass-loader": "8.0.0",
     "style-resources-loader": "1.2.1",
     "vue": "2.6.10",
