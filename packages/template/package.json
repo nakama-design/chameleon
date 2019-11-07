@@ -29,7 +29,7 @@
     "github-markdown-css": "3.0.1",
     "gridsome": "0.7.10",
     "marked": "0.7.0",
-    "mermaid": "8.4.0",
+    "mermaid": "8.4.1",
     "node-sass": "4.13.0",
     "sass-loader": "8.0.0",
     "style-resources-loader": "1.2.1",
