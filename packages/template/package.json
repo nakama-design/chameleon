@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "bootstrap": "4.4.1",
-    "bootstrap-vue": "2.7.0",
+    "bootstrap-vue": "2.8.0",
     "bytes": "3.1.0",
     "chart.js": "2.9.3",
     "dayjs": "1.8.23",
