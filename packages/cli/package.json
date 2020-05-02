@@ -21,7 +21,7 @@
     "@vuese/parser": "2.6.0",
     "fast-glob": "3.2.2",
     "lstat": "1.0.0",
-    "meow": "6.1.0",
+    "meow": "6.1.1",
     "read-yaml-promise": "1.0.2",
     "sander": "0.6.0",
     "signale": "1.4.0"
