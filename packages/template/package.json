@@ -28,7 +28,7 @@
     "fuse.js": "6.2.1",
     "github-markdown-css": "4.0.0",
     "gridsome": "0.7.17",
-    "marked": "1.1.0",
+    "marked": "1.2.9",
     "mermaid": "8.5.2",
     "node-sass": "4.14.1",
     "sass-loader": "8.0.2",
